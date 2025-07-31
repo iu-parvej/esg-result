@@ -329,7 +329,7 @@ function App() {
     setChartError(false);
   }, [selectedStudent]);
 
-  // Function to handle print
+  // FIXED PRINT FUNCTION - THE KEY CHANGE IS HERE
   const handlePrintResult = useCallback(() => {
     if (!selectedStudent) return;
     
@@ -490,10 +490,11 @@ function App() {
     printWindow.document.write(printContent);
     printWindow.document.close();
     
+    // FIXED: Removed the printWindow.close() call that was causing the issue
     // Wait for the document to load before printing
     printWindow.onload = function() {
       printWindow.print();
-      printWindow.close();
+      // DO NOT CLOSE THE WINDOW - Let the user close it when they're done
     };
   }, [selectedStudent]);
 
