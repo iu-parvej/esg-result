@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 // Define image URLs for students
@@ -33,9 +33,7 @@ const studentImageMap = {
     "2031024": "https://i.ibb.co/mCNbhMpX/MST-AFROZA-KHATUN24.png", // Specific for 2031024
     "2031042": "https://i.postimg.cc/bNJkZxJB/KHADIJA-AKTER.png", // Unique image for Khadija Akter
 };
-
 const sharedImageUrl = "https://i.ibb.co/BVc0jwkq/JASMIN-AKTER-MUKTA.png"; // JASMIN AKTER MUKTA's image
-
 const studentsUsingSharedImage = [
     "2031042", // KHADIJA AKTER
     "2031046", // MAHFUZA KHATUN
@@ -47,7 +45,6 @@ const studentsUsingSharedImage = [
     "2031028", // MST. SULTANA PARVIN SHIFA
     "2031027"  // SADIA ISLAM
 ];
-
 
 // Manually extracted data from the provided Excel sheet image
 const studentData = [
@@ -275,16 +272,13 @@ const studentData = [
   }
 ].map(student => {
     let imageUrl = studentImageMap[student.roll];
-
     if (studentsUsingSharedImage.includes(student.roll)) {
         imageUrl = sharedImageUrl;
     }
-
     // Fallback for any students not explicitly mapped
     if (!imageUrl) {
         imageUrl = "https://placehold.co/96x96/aabbcc/ffffff?text=No+Image"; // Generic placeholder
     }
-
     return { ...student, imageUrl };
 });
 
@@ -313,35 +307,40 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredStudents, setSearchStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
   const [isMobile, setIsMobile] = useState(false);
+  const [chartError, setChartError] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768); // Tailwind's 'md' breakpoint is 768px
     };
-
     window.addEventListener('resize', handleResize);
     handleResize(); // Set initial value
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Function to handle print
-  const handlePrintResult = () => {
-    if (!selectedStudent) return;
+  // Reset chart error when student changes
+  useEffect(() => {
+    setChartError(false);
+  }, [selectedStudent]);
 
+  // Function to handle print
+  const handlePrintResult = useCallback(() => {
+    if (!selectedStudent) return;
+    
     // Helper to get grade or 'N/A'
     const getGrade = (gpaKey, gradeKey) => {
-      // Check if the GPA value exists and is not null/undefined
-      if (selectedStudent[gpaKey] !== undefined && selectedStudent[gpaKey] !== null) {
-        return `${selectedStudent[gpaKey].toFixed(3)} (${selectedStudent[gradeKey] || 'N/A'})`;
+      const gpaValue = selectedStudent[gpaKey];
+      if (gpaValue !== undefined && gpaValue !== null) {
+        const gradeValue = selectedStudent[gradeKey] || 'N/A';
+        return `${gpaValue.toFixed(3)} (${gradeValue})`;
       }
-      return 'N/A'; // Return 'N/A' if GPA data is missing
+      return 'N/A';
     };
 
     const printContent = `
@@ -486,13 +485,17 @@ function App() {
       </body>
       </html>
     `;
-
+    
     const printWindow = window.open('', '', 'height=800,width=600');
     printWindow.document.write(printContent);
     printWindow.document.close();
-    printWindow.print();
-    printWindow.close();
-  };
+    
+    // Wait for the document to load before printing
+    printWindow.onload = function() {
+      printWindow.print();
+      printWindow.close();
+    };
+  }, [selectedStudent]);
 
   // Effect to filter students based on search term
   useEffect(() => {
@@ -501,13 +504,15 @@ function App() {
       setSelectedStudent(null); // Clear selected student when search is empty
       return;
     }
-
+    
     const lowerCaseSearchTerm = searchTerm.toLowerCase();
     const results = studentData.filter(student =>
       student.name.toLowerCase().includes(lowerCaseSearchTerm) ||
       student.roll.includes(lowerCaseSearchTerm)
     );
+    
     setSearchStudents(results);
+    
     // If only one result, automatically select it
     if (results.length === 1) {
       setSelectedStudent(results[0]);
@@ -523,18 +528,17 @@ function App() {
       sortableItems.sort((a, b) => {
         let aValue = a[sortConfig.key];
         let bValue = b[sortConfig.key];
-
+        
         // Handle GPA/CGPA values as numbers for proper sorting
         if (sortConfig.key.includes('gpa') || sortConfig.key === 'cgpa') {
-          aValue = parseFloat(aValue);
-          bValue = parseFloat(bValue);
+          aValue = parseFloat(aValue) || 0;
+          bValue = parseFloat(bValue) || 0;
         } else if (sortConfig.key === 'roll') {
-            // Treat roll as number for sorting
-            aValue = parseInt(aValue, 10);
-            bValue = parseInt(bValue, 10);
+          // Treat roll as number for sorting
+          aValue = parseInt(aValue, 10) || 0;
+          bValue = parseInt(bValue, 10) || 0;
         }
-
-
+        
         if (aValue < bValue) {
           return sortConfig.direction === 'ascending' ? -1 : 1;
         }
@@ -562,12 +566,10 @@ function App() {
     return '';
   };
 
-
   // Prepare data for Grade Distribution Bar Chart
   const gradeDistributionData = useMemo(() => {
     const gradeCounts = {};
     const grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F']; // Define order of grades
-
     studentData.forEach(student => {
       // Collect all grades from all semesters
       ['grade_1_1', 'grade_1_2', 'grade_2_1', 'grade_2_2'].forEach(gradeKey => {
@@ -575,10 +577,9 @@ function App() {
         if (grade) {
           gradeCounts[grade] = (gradeCounts[grade] || 0) + 1;
         }
-        }
-      );
+      });
     });
-
+    
     // Convert to array of objects for recharts, maintaining order
     return grades
       .filter(grade => gradeCounts[grade] > 0) // Only include grades that exist in data
@@ -591,7 +592,6 @@ function App() {
   // Prepare data for CGPA Trend Line Chart (Overall Average)
   const cgpaTrendData = useMemo(() => {
     const semesterData = {}; // { '1-1': { totalGpa: 0, count: 0 }, ... }
-
     studentData.forEach(student => {
       // Aggregate GPA for each semester
       ['1_1', '1_2', '2_1', '2_2'].forEach(sem => {
@@ -606,13 +606,13 @@ function App() {
         }
       });
     });
-
+    
     // Calculate average GPA for each semester
     const trend = Object.keys(semesterData).map(semester => ({
       semester: semester,
       averageGpa: (semesterData[semester].totalGpa / semesterData[semester].count).toFixed(2)
     }));
-
+    
     // Map semester names for display
     const semesterDisplayNames = {
       '1-1': 'First Semester',
@@ -620,7 +620,7 @@ function App() {
       '2-1': 'Third Semester',
       '2-2': 'Fourth Semester',
     };
-
+    
     // Sort semesters for proper line chart display and apply display names
     const semesterOrder = ['1-1', '1-2', '2-1', '2-2'];
     return trend.sort((a, b) => semesterOrder.indexOf(a.semester) - semesterOrder.indexOf(b.semester))
@@ -630,17 +630,30 @@ function App() {
   // Prepare data for Selected Student's GPA Trend Line Chart
   const selectedStudentGpaTrendData = useMemo(() => {
     if (!selectedStudent) return [];
+    
     const trend = [];
-    ['1_1', '1_2', '2_1', '2_2'].forEach(sem => {
+    const semesterOrder = ['1_1', '1_2', '2_1', '2_2'];
+    
+    // Process each semester in order
+    for (const sem of semesterOrder) {
       const gpaKey = `gpa_${sem}`;
       const semesterName = sem.replace('_', '-');
-      if (selectedStudent[gpaKey] !== undefined) {
+      let gpaValue = selectedStudent[gpaKey];
+      
+      // Ensure gpaValue is a valid number
+      if (typeof gpaValue === 'string') {
+        gpaValue = parseFloat(gpaValue);
+      }
+      
+      // Only include valid GPA values
+      if (typeof gpaValue === 'number' && !isNaN(gpaValue) && gpaValue >= 0 && gpaValue <= 4.0) {
         trend.push({
           semester: semesterName,
-          gpa: selectedStudent[gpaKey]
+          gpa: gpaValue
         });
       }
-    });
+    }
+    
     // Map semester names for display
     const semesterDisplayNames = {
       '1-1': 'First Semester',
@@ -648,52 +661,87 @@ function App() {
       '2-1': 'Third Semester',
       '2-2': 'Fourth Semester',
     };
-    const semesterOrder = ['1-1', '1-2', '2-1', '2-2'];
-    return trend.sort((a, b) => semesterOrder.indexOf(a.semester) - semesterOrder.indexOf(b.semester))
-                .map(item => ({ ...item, semester: semesterDisplayNames[item.semester] || item.semester }));
+    
+    // Sort by semester order
+    return trend.sort((a, b) => {
+      const orderA = semesterOrder.indexOf(`gpa_${a.semester.replace('-', '_')}`);
+      const orderB = semesterOrder.indexOf(`gpa_${b.semester.replace('-', '_')}`);
+      return orderA - orderB;
+    }).map(item => ({
+      ...item,
+      semester: semesterDisplayNames[item.semester] || item.semester
+    }));
   }, [selectedStudent]);
 
   // Dynamic Y-axis domain for individual student GPA trend
   const selectedStudentGpaDomain = useMemo(() => {
     if (!selectedStudentGpaTrendData.length) return [1.0, 4.0];
-    const gpas = selectedStudentGpaTrendData.map(d => d.gpa);
-    const minGpa = Math.min(...gpas);
-    const maxGpa = Math.max(...gpas);
-    // Add a small buffer to min/max for better visualization, ensuring it doesn't go below 0 or above 4.0
-    return [Math.max(0, minGpa - 0.1), Math.min(4.0, maxGpa + 0.1)];
+    
+    try {
+      const gpas = selectedStudentGpaTrendData.map(d => d.gpa);
+      const minGpa = Math.min(...gpas);
+      const maxGpa = Math.max(...gpas);
+      
+      // Ensure min and max are valid numbers
+      if (isNaN(minGpa) || isNaN(maxGpa)) {
+        return [1.0, 4.0];
+      }
+      
+      // Add a small buffer to min/max for better visualization, ensuring it doesn't go below 0 or above 4.0
+      return [
+        Math.max(0, minGpa - 0.1),
+        Math.min(4.0, maxGpa + 0.1)
+      ];
+    } catch (error) {
+      console.error("Error calculating GPA domain:", error);
+      return [1.0, 4.0];
+    }
   }, [selectedStudentGpaTrendData]);
 
   // Dynamic Y-axis domain for overall average GPA trend
   const overallGpaDomain = useMemo(() => {
     if (!cgpaTrendData.length) return [1.0, 4.0];
-    const gpas = cgpaTrendData.map(d => parseFloat(d.averageGpa));
-    const minGpa = Math.min(...gpas);
-    const maxGpa = Math.max(...gpas);
-    // Add a small buffer to min/max for better visualization, ensuring it doesn't go below 0 or above 4.0
-    return [Math.max(0, minGpa - 0.1), Math.min(4.0, maxGpa + 0.1)];
+    
+    try {
+      const gpas = cgpaTrendData.map(d => parseFloat(d.averageGpa));
+      const minGpa = Math.min(...gpas);
+      const maxGpa = Math.max(...gpas);
+      
+      // Ensure min and max are valid numbers
+      if (isNaN(minGpa) || isNaN(maxGpa)) {
+        return [1.0, 4.0];
+      }
+      
+      // Add a small buffer to min/max for better visualization, ensuring it doesn't go below 0 or above 4.0
+      return [
+        Math.max(0, minGpa - 0.1),
+        Math.min(4.0, maxGpa + 0.1)
+      ];
+    } catch (error) {
+      console.error("Error calculating overall GPA domain:", error);
+      return [1.0, 4.0];
+    }
   }, [cgpaTrendData]);
-
 
   // Prepare data for CGPA Distribution Bar Chart
   const cgpaDistributionData = useMemo(() => {
     const thresholds = [2.5, 3.0, 3.25, 3.5, 3.75, 3.8, 3.9, 4.0];
     const distribution = [];
-
+    
     for (let i = 0; i < thresholds.length; i++) {
       const lowerBound = thresholds[i];
       const upperBound = (i + 1 < thresholds.length) ? thresholds[i + 1] : 4.01; // Upper bound for the last range
-
       const studentsInThreshold = studentData.filter(student =>
         student.cgpa >= lowerBound && student.cgpa < upperBound
       );
-
+      
       let label;
       if (i + 1 < thresholds.length) {
         label = `${lowerBound.toFixed(2)} - < ${upperBound.toFixed(2)}`;
       } else {
         label = `≥ ${lowerBound.toFixed(2)}`; // For the last category (e.g., >= 4.0)
       }
-
+      
       distribution.push({
         threshold: lowerBound.toFixed(2), // Use lower bound for X-axis tick
         rangeLabel: label, // Full range label for tooltip
@@ -701,9 +749,9 @@ function App() {
         students: studentsInThreshold.map(s => ({ name: s.name, roll: s.roll }))
       });
     }
+    
     return distribution;
   }, []);
-
 
   // Calculate overall statistics
   const overallStats = useMemo(() => {
@@ -713,6 +761,87 @@ function App() {
     const averageCGPA = (cgpAs.reduce((sum, val) => sum + val, 0) / cgpAs.length).toFixed(2);
     return { maxCGPA, minCGPA, averageCGPA };
   }, []);
+
+  // Error-safe chart renderer
+  const renderStudentGpaChart = useCallback(() => {
+    if (chartError) {
+      return (
+        <div className="text-center text-red-500 p-4">
+          <p>Error displaying GPA chart. Please try another student.</p>
+          <button 
+            onClick={() => setChartError(false)}
+            className="mt-2 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+          >
+            Retry Chart
+          </button>
+        </div>
+      );
+    }
+
+    if (!selectedStudentGpaTrendData.length) {
+      return (
+        <div className="text-center text-gray-500 p-8">
+          No GPA trend data available for this student.
+        </div>
+      );
+    }
+
+    try {
+      return (
+        <ResponsiveContainer width="100%" height={350}>
+          <LineChart
+            data={selectedStudentGpaTrendData}
+            margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+            <XAxis
+              dataKey="semester"
+              axisLine={false}
+              tickLine={false}
+              className="text-sm"
+              tickMargin={8}
+              tick={isMobile ? false : true}
+              angle={0}
+              textAnchor="middle"
+              dx={0}
+              dy={0}
+            />
+            <YAxis
+              domain={selectedStudentGpaDomain}
+              allowDataOverflow={true}
+              axisLine={false}
+              tickLine={false}
+              className="text-sm"
+              tickFormatter={(value, index) => (index === 0 ? '' : value.toFixed(2))}
+              tickMargin={8}
+              angle={-90}
+              textAnchor="end"
+              dx={-5}
+              dy={5}
+            />
+            <Tooltip contentStyle={{ borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: 'none' }} />
+            <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '14px' }} />
+            <Line
+              type="monotone"
+              dataKey="gpa"
+              stroke={chartColors[1]}
+              activeDot={{ r: 8 }}
+              strokeWidth={3}
+              name="GPA"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      );
+    } catch (error) {
+      console.error("Chart rendering error:", error);
+      setChartError(true);
+      return (
+        <div className="text-center text-red-500 p-4">
+          Error displaying GPA chart. Please try another student.
+        </div>
+      );
+    }
+  }, [selectedStudentGpaTrendData, selectedStudentGpaDomain, isMobile, chartError]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 p-4 sm:p-6 font-inter text-gray-800">
@@ -726,7 +855,7 @@ function App() {
             Islamic University Bangladesh {/* Updated University Name */}
           </p>
         </div>
-
+        
         {/* Search Section - Made Sticky */}
         <div className="sticky top-0 z-10 bg-white p-6 sm:p-8 border-b border-gray-200 shadow-md">
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
@@ -738,13 +867,13 @@ function App() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button
-              onClick={() => { /* Search is automatic on change, but a button can trigger a specific action if needed */ }}
+              onClick={() => {}}
               className="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out transform hover:scale-105"
             >
               Search
             </button>
           </div>
-
+          
           {/* Search Results / Suggestions */}
           {searchTerm.trim() !== '' && filteredStudents.length > 0 && (
             <div className="mt-6 p-4 bg-gray-50 rounded-lg shadow-inner max-h-60 overflow-y-auto">
@@ -766,14 +895,14 @@ function App() {
               </ul>
             </div>
           )}
-
+          
           {searchTerm.trim() !== '' && filteredStudents.length === 0 && (
             <div className="mt-6 p-4 bg-red-50 text-red-700 rounded-lg shadow-inner text-center">
               No students found matching "{searchTerm}". Please try a different name or roll.
             </div>
           )}
         </div>
-
+        
         {/* Dashboard Content */}
         <div className="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Conditional rendering based on selectedStudent */}
@@ -785,23 +914,57 @@ function App() {
                 <div className="space-y-3 text-lg">
                   {/* Student Image */}
                   <img
-                    src={selectedStudent.imageUrl} // Use dynamic image URL
-                    alt="Student"
+                    src={selectedStudent.imageUrl}
+                    alt={`${selectedStudent.name} profile`}
                     className="w-24 h-24 rounded-full object-cover mx-auto mb-4"
-                    onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/96x96/aabbcc/ffffff?text=No+Image" }} // Fallback on error
+                    onError={(e) => { 
+                      e.target.onerror = null; 
+                      e.target.src="https://placehold.co/96x96/aabbcc/ffffff?text=No+Image" 
+                    }}
                   />
+                  
                   <p><span className="font-semibold text-purple-700">Name:</span> {selectedStudent.name}</p>
                   <p><span className="font-semibold text-purple-700">Roll:</span> {selectedStudent.roll}</p>
                   <p><span className="font-semibold text-purple-700">CGPA:</span> <span className="text-indigo-600 font-bold text-xl">{selectedStudent.cgpa}</span></p>
+                  
                   <div className="mt-4 pt-4 border-t border-gray-200">
                     <h3 className="font-semibold text-gray-700 mb-2">Semester-wise Grades:</h3>
                     <ul className="space-y-1">
-                      <li className="flex justify-between"><span>First Semester:</span> <span className="font-medium">{selectedStudent.gpa_1_1} ({selectedStudent.grade_1_1 || 'N/A'})</span></li>
-                      <li className="flex justify-between"><span>Second Semester:</span> <span className="font-medium">{selectedStudent.gpa_1_2} ({selectedStudent.grade_1_2 || 'N/A'})</span></li>
-                      <li className="flex justify-between"><span>Third Semester:</span> <span className="font-medium">{selectedStudent.gpa_2_1} ({selectedStudent.grade_2_1 || 'N/A'})</span></li>
-                      <li className="flex justify-between"><span>Fourth Semester:</span> <span className="font-medium">{selectedStudent.gpa_2_2} ({selectedStudent.grade_2_2 || 'N/A'})</span></li>
+                      <li className="flex justify-between">
+                        <span>First Semester:</span> 
+                        <span className="font-medium">
+                          {selectedStudent.gpa_1_1 !== undefined && selectedStudent.gpa_1_1 !== null ? 
+                            `${selectedStudent.gpa_1_1.toFixed(3)} (${selectedStudent.grade_1_1 || 'N/A'})` : 
+                            'N/A'}
+                        </span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span>Second Semester:</span> 
+                        <span className="font-medium">
+                          {selectedStudent.gpa_1_2 !== undefined && selectedStudent.gpa_1_2 !== null ? 
+                            `${selectedStudent.gpa_1_2.toFixed(3)} (${selectedStudent.grade_1_2 || 'N/A'})` : 
+                            'N/A'}
+                        </span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span>Third Semester:</span> 
+                        <span className="font-medium">
+                          {selectedStudent.gpa_2_1 !== undefined && selectedStudent.gpa_2_1 !== null ? 
+                            `${selectedStudent.gpa_2_1.toFixed(3)} (${selectedStudent.grade_2_1 || 'N/A'})` : 
+                            'N/A'}
+                        </span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span>Fourth Semester:</span> 
+                        <span className="font-medium">
+                          {selectedStudent.gpa_2_2 !== undefined && selectedStudent.gpa_2_2 !== null ? 
+                            `${selectedStudent.gpa_2_2.toFixed(3)} (${selectedStudent.grade_2_2 || 'N/A'})` : 
+                            'N/A'}
+                        </span>
+                      </li>
                     </ul>
                   </div>
+                  
                   {/* Print Result button moved here */}
                   <button
                     onClick={handlePrintResult}
@@ -811,59 +974,18 @@ function App() {
                   </button>
                 </div>
               </div>
-              <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg border border-gray-200 flex flex-col justify-center"> {/* Added flex and justify-center */}
-                <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 text-center" style={{ fontFamily: 'Georgia, serif', color: '#333', fontSize: '2rem' }}> {/* Styled title */}
-                  {selectedStudent.name}'s GPA Trend
+              
+              <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg border border-gray-200 flex flex-col justify-center">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 text-center" style={{ fontFamily: 'Georgia, serif', color: '#333', fontSize: '2rem' }}>
+                  {selectedStudent.name ? `${selectedStudent.name}'s GPA Trend` : "Student's GPA Trend"}
                 </h2>
-                <ResponsiveContainer width="100%" height={350}> {/* Increased height */}
-                  <LineChart
-                    data={selectedStudentGpaTrendData}
-                    margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                    <XAxis
-                      dataKey="semester"
-                      axisLine={false}
-                      tickLine={false}
-                      className="text-sm"
-                      tickMargin={8}
-                      // Hide labels on mobile by setting tick to false
-                      tick={isMobile ? false : true}
-                      // For desktop, keep horizontal. For mobile, hide.
-                      angle={0}
-                      textAnchor="middle"
-                      dx={0}
-                      dy={0}
-                    />
-                    <YAxis
-                      domain={selectedStudentGpaDomain}
-                      allowDataOverflow={true}
-                      axisLine={false}
-                      tickLine={false}
-                      className="text-sm"
-                      tickFormatter={(value, index) => (index === 0 ? '' : value.toFixed(2))} // Hide first Y-axis label
-                      tickMargin={8}
-                      angle={-90} // Rotate Y-axis labels
-                      textAnchor="end" // Anchor text to the end for vertical alignment
-                      dx={-5} // Adjust horizontal position
-                      dy={5} // Adjust vertical position
-                    />
-                    <Tooltip contentStyle={{ borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: 'none' }} />
-                    <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '14px' }} />
-                    <Line
-                      type="monotone"
-                      dataKey="gpa"
-                      stroke={chartColors[1]}
-                      activeDot={{ r: 8 }}
-                      strokeWidth={3}
-                      name="GPA"
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
+                
+                {renderStudentGpaChart()}
+                
                 {selectedStudent && (
-                    <p className="text-center text-gray-600 text-sm mt-4">
-                        Developed by <a href="https://www.linkedin.com/in/parvej-iu/" target="_blank" rel="noopener noreferrer" style={{ color: '#6366F1', textDecoration: 'underline' }}>MD. PARVEJ HOSSAIN</a>
-                    </p>
+                  <p className="text-center text-gray-600 text-sm mt-4">
+                    Developed by <a href="https://www.linkedin.com/in/parvej-iu/" target="_blank" rel="noopener noreferrer" style={{ color: '#6366F1', textDecoration: 'underline' }}>MD. PARVEJ HOSSAIN</a>
+                  </p>
                 )}
               </div>
             </>
@@ -880,12 +1002,13 @@ function App() {
                   <p><span className="font-semibold text-purple-700">Average CGPA:</span> <span className="text-indigo-600 font-bold">{overallStats.averageCGPA}</span></p>
                 </div>
               </div>
-
+              
               {/* Overall Charts - Now 50/50 split */}
               <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Overall Average GPA Trend by Semester */}
-                <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 md:col-span-1 flex flex-col justify-center"> {/* Added flex and justify-center */}
-                  <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 text-center">Overall Average GPA Trend by Semester</h2> {/* Centered title */}
+                <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 md:col-span-1 flex flex-col justify-center">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 text-center">Overall Average GPA Trend by Semester</h2>
+                  
                   <ResponsiveContainer width="100%" height={300}>
                     <LineChart
                       data={cgpaTrendData}
@@ -898,9 +1021,7 @@ function App() {
                         tickLine={false}
                         className="text-sm"
                         tickMargin={8}
-                        // Hide labels on mobile by setting tick to false
                         tick={isMobile ? false : true}
-                        // For desktop, keep horizontal. For mobile, hide.
                         angle={0}
                         textAnchor="middle"
                         dx={0}
@@ -912,12 +1033,12 @@ function App() {
                         axisLine={false}
                         tickLine={false}
                         className="text-sm"
-                        tickFormatter={(value, index) => (index === 0 ? '' : value.toFixed(2))} // Hide first Y-axis label
+                        tickFormatter={(value, index) => (index === 0 ? '' : value.toFixed(2))}
                         tickMargin={8}
-                        angle={-90} // Rotate Y-axis labels
-                        textAnchor="end" // Anchor text to the end for vertical alignment
-                        dx={-5} // Adjust horizontal position
-                        dy={5} // Adjust vertical position
+                        angle={-90}
+                        textAnchor="end"
+                        dx={-5}
+                        dy={5}
                       />
                       <Tooltip contentStyle={{ borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: 'none' }} />
                       <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '14px' }} />
@@ -932,10 +1053,11 @@ function App() {
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
-
+                
                 {/* CGPA Distribution (Number of Students) */}
-                <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 md:col-span-1 flex flex-col justify-center"> {/* Added flex and justify-center */}
-                  <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 text-center">CGPA Distribution (Number of Students)</h2> {/* Centered title */}
+                <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 md:col-span-1 flex flex-col justify-center">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 text-center">CGPA Distribution (Number of Students)</h2>
+                  
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart
                       data={cgpaDistributionData}
@@ -953,7 +1075,7 @@ function App() {
               </div>
             </>
           )}
-
+          
           {/* Total Students Result Table - Only show if no student selected */}
           {!selectedStudent && (
             <div className="lg:col-span-3 bg-white p-6 rounded-xl shadow-lg border border-gray-200 mt-8">
@@ -1011,10 +1133,26 @@ function App() {
                       <tr key={student.roll} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{student.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{student.roll}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{student.gpa_1_1} ({student.grade_1_1})</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{student.gpa_1_2} ({student.grade_1_2})</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{student.gpa_2_1} ({student.grade_2_1})</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{student.gpa_2_2} ({student.grade_2_2})</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {student.gpa_1_1 !== undefined ? 
+                            `${student.gpa_1_1.toFixed(3)} (${student.grade_1_1 || 'N/A'})` : 
+                            'N/A'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {student.gpa_1_2 !== undefined ? 
+                            `${student.gpa_1_2.toFixed(3)} (${student.grade_1_2 || 'N/A'})` : 
+                            'N/A'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {student.gpa_2_1 !== undefined ? 
+                            `${student.gpa_2_1.toFixed(3)} (${student.grade_2_1 || 'N/A'})` : 
+                            'N/A'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {student.gpa_2_2 !== undefined ? 
+                            `${student.gpa_2_2.toFixed(3)} (${student.grade_2_2 || 'N/A'})` : 
+                            'N/A'}
+                        </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-indigo-600">{student.cgpa}</td>
                       </tr>
                     ))
