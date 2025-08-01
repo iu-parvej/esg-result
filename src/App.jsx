@@ -329,7 +329,7 @@ function App() {
     setChartError(false);
   }, [selectedStudent]);
 
-  // FIXED PRINT FUNCTION - THE KEY CHANGE IS HERE
+  // FIXED PRINT FUNCTION
   const handlePrintResult = useCallback(() => {
     if (!selectedStudent) return;
     
@@ -490,11 +490,10 @@ function App() {
     printWindow.document.write(printContent);
     printWindow.document.close();
     
-    // FIXED: Removed the printWindow.close() call that was causing the issue
     // Wait for the document to load before printing
     printWindow.onload = function() {
       printWindow.print();
-      // DO NOT CLOSE THE WINDOW - Let the user close it when they're done
+      // Do not close the window - let the user close it when they're done
     };
   }, [selectedStudent]);
 
@@ -724,34 +723,20 @@ function App() {
     }
   }, [cgpaTrendData]);
 
-  // Prepare data for CGPA Distribution Bar Chart
+  // FIXED CGPA Distribution with cumulative counts
   const cgpaDistributionData = useMemo(() => {
-    const thresholds = [2.5, 3.0, 3.25, 3.5, 3.75, 3.8, 3.9, 4.0];
-    const distribution = [];
+    const thresholds = [2.5, 3.0, 3.25, 3.5, 3.75, 3.8, 3.9];
     
-    for (let i = 0; i < thresholds.length; i++) {
-      const lowerBound = thresholds[i];
-      const upperBound = (i + 1 < thresholds.length) ? thresholds[i + 1] : 4.01; // Upper bound for the last range
-      const studentsInThreshold = studentData.filter(student =>
-        student.cgpa >= lowerBound && student.cgpa < upperBound
-      );
+    return thresholds.map(threshold => {
+      const studentsAboveThreshold = studentData.filter(student => student.cgpa > threshold);
       
-      let label;
-      if (i + 1 < thresholds.length) {
-        label = `${lowerBound.toFixed(2)} - < ${upperBound.toFixed(2)}`;
-      } else {
-        label = `≥ ${lowerBound.toFixed(2)}`; // For the last category (e.g., >= 4.0)
-      }
-      
-      distribution.push({
-        threshold: lowerBound.toFixed(2), // Use lower bound for X-axis tick
-        rangeLabel: label, // Full range label for tooltip
-        count: studentsInThreshold.length,
-        students: studentsInThreshold.map(s => ({ name: s.name, roll: s.roll }))
-      });
-    }
-    
-    return distribution;
+      return {
+        range: threshold.toFixed(2),
+        rangeLabel: `>${threshold.toFixed(2)}`,
+        count: studentsAboveThreshold.length,
+        students: studentsAboveThreshold.map(s => ({ name: s.name, roll: s.roll }))
+      };
+    });
   }, []);
 
   // Calculate overall statistics
@@ -792,43 +777,55 @@ function App() {
         <ResponsiveContainer width="100%" height={350}>
           <LineChart
             data={selectedStudentGpaTrendData}
-            margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
+            margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
+            style={{ fontFamily: 'Arial, sans-serif' }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+            <CartesianGrid 
+              stroke="#e0e0e0" 
+              strokeDasharray="3 3" 
+              vertical={false}
+            />
             <XAxis
               dataKey="semester"
-              axisLine={false}
-              tickLine={false}
-              className="text-sm"
-              tickMargin={8}
-              tick={isMobile ? false : true}
-              angle={0}
-              textAnchor="middle"
-              dx={0}
-              dy={0}
+              tickMargin={10}
+              tick={{ fontSize: 12, fill: '#666' }}
+              axisLine={{ stroke: '#ccc' }}
+              tickLine={{ stroke: '#ccc' }}
             />
             <YAxis
               domain={selectedStudentGpaDomain}
-              allowDataOverflow={true}
-              axisLine={false}
-              tickLine={false}
-              className="text-sm"
-              tickFormatter={(value, index) => (index === 0 ? '' : value.toFixed(2))}
-              tickMargin={8}
-              angle={-90}
-              textAnchor="end"
-              dx={-5}
-              dy={5}
+              tickFormatter={(value) => value.toFixed(2)}
+              tickMargin={10}
+              tick={{ fontSize: 12, fill: '#666' }}
+              axisLine={{ stroke: '#ccc' }}
+              tickLine={{ stroke: '#ccc' }}
             />
-            <Tooltip contentStyle={{ borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: 'none' }} />
-            <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '14px' }} />
+            <Tooltip
+              contentStyle={{ 
+                backgroundColor: '#fff', 
+                border: '1px solid #ddd', 
+                padding: '8px',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+              }}
+              cursor={{ stroke: 'rgba(0,0,0,0.1)' }}
+            />
+            <Legend 
+              iconType="circle" 
+              wrapperStyle={{ 
+                bottom: 20, 
+                left: 20, 
+                fontSize: 12,
+                fontFamily: 'Arial, sans-serif'
+              }}
+            />
             <Line
               type="monotone"
               dataKey="gpa"
-              stroke={chartColors[1]}
-              activeDot={{ r: 8 }}
-              strokeWidth={3}
-              name="GPA"
+              stroke="#EC4899"
+              strokeWidth={2}
+              dot={{ stroke: '#EC4899', strokeWidth: 2, r: 4 }}
+              activeDot={{ r: 6, stroke: '#EC4899', strokeWidth: 2 }}
+              name="GPA Trend"
             />
           </LineChart>
         </ResponsiveContainer>
@@ -842,7 +839,7 @@ function App() {
         </div>
       );
     }
-  }, [selectedStudentGpaTrendData, selectedStudentGpaDomain, isMobile, chartError]);
+  }, [selectedStudentGpaTrendData, selectedStudentGpaDomain, chartError]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-100 p-4 sm:p-6 font-inter text-gray-800">
@@ -899,7 +896,7 @@ function App() {
           
           {searchTerm.trim() !== '' && filteredStudents.length === 0 && (
             <div className="mt-6 p-4 bg-red-50 text-red-700 rounded-lg shadow-inner text-center">
-              No students found matching "{searchTerm}". Please try a different name or roll.
+              No students found matching "${searchTerm}". Please try a different name or roll.
             </div>
           )}
         </div>
@@ -976,7 +973,7 @@ function App() {
                 </div>
               </div>
               
-              <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg border border-gray-200 flex flex-col justify-center">
+              <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg border border-gray-200">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 text-center" style={{ fontFamily: 'Georgia, serif', color: '#333', fontSize: '2rem' }}>
                   {selectedStudent.name ? `${selectedStudent.name}'s GPA Trend` : "Student's GPA Trend"}
                 </h2>
@@ -1007,48 +1004,60 @@ function App() {
               {/* Overall Charts - Now 50/50 split */}
               <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Overall Average GPA Trend by Semester */}
-                <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 md:col-span-1 flex flex-col justify-center">
+                <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 md:col-span-1">
                   <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 text-center">Overall Average GPA Trend by Semester</h2>
                   
                   <ResponsiveContainer width="100%" height={300}>
                     <LineChart
                       data={cgpaTrendData}
-                      margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
+                      margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
+                      style={{ fontFamily: 'Arial, sans-serif' }}
                     >
-                      <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                      <CartesianGrid 
+                        stroke="#e0e0e0" 
+                        strokeDasharray="3 3" 
+                        vertical={false}
+                      />
                       <XAxis
                         dataKey="semester"
-                        axisLine={false}
-                        tickLine={false}
-                        className="text-sm"
-                        tickMargin={8}
-                        tick={isMobile ? false : true}
-                        angle={0}
-                        textAnchor="middle"
-                        dx={0}
-                        dy={0}
+                        tickMargin={10}
+                        tick={{ fontSize: 12, fill: '#666' }}
+                        axisLine={{ stroke: '#ccc' }}
+                        tickLine={{ stroke: '#ccc' }}
                       />
                       <YAxis
                         domain={overallGpaDomain}
-                        allowDataOverflow={true}
-                        axisLine={false}
-                        tickLine={false}
-                        className="text-sm"
-                        tickFormatter={(value, index) => (index === 0 ? '' : value.toFixed(2))}
-                        tickMargin={8}
-                        angle={-90}
-                        textAnchor="end"
-                        dx={-5}
-                        dy={5}
+                        tickFormatter={(value) => value.toFixed(2)}
+                        tickMargin={10}
+                        tick={{ fontSize: 12, fill: '#666' }}
+                        axisLine={{ stroke: '#ccc' }}
+                        tickLine={{ stroke: '#ccc' }}
                       />
-                      <Tooltip contentStyle={{ borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: 'none' }} />
-                      <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '14px' }} />
+                      <Tooltip
+                        contentStyle={{ 
+                          backgroundColor: '#fff', 
+                          border: '1px solid #ddd', 
+                          padding: '8px',
+                          boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                        }}
+                        cursor={{ stroke: 'rgba(0,0,0,0.1)' }}
+                      />
+                      <Legend 
+                        iconType="circle" 
+                        wrapperStyle={{ 
+                          bottom: 20, 
+                          left: 20, 
+                          fontSize: 12,
+                          fontFamily: 'Arial, sans-serif'
+                        }}
+                      />
                       <Line
                         type="monotone"
                         dataKey="averageGpa"
-                        stroke={chartColors[1]}
-                        activeDot={{ r: 8 }}
-                        strokeWidth={3}
+                        stroke="#EC4899"
+                        strokeWidth={2}
+                        dot={{ stroke: '#EC4899', strokeWidth: 2, r: 4 }}
+                        activeDot={{ r: 6, stroke: '#EC4899', strokeWidth: 2 }}
                         name="Average GPA"
                       />
                     </LineChart>
@@ -1056,20 +1065,49 @@ function App() {
                 </div>
                 
                 {/* CGPA Distribution (Number of Students) */}
-                <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 md:col-span-1 flex flex-col justify-center">
+                <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 md:col-span-1">
                   <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 text-center">CGPA Distribution (Number of Students)</h2>
                   
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart
                       data={cgpaDistributionData}
-                      margin={{ top: 20, right: 10, left: 10, bottom: 5 }}
+                      margin={{ top: 20, right: 30, left: 40, bottom: 40 }}
                     >
-                      <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                      <XAxis dataKey="threshold" axisLine={false} tickLine={false} className="text-sm" tickMargin={8} />
-                      <YAxis allowDecimals={false} axisLine={false} tickLine={false} className="text-sm" tickMargin={8} />
+                      <CartesianGrid 
+                        stroke="#e0e0e0" 
+                        strokeDasharray="3 3" 
+                      />
+                      <XAxis
+                        dataKey="range"
+                        tickMargin={10}
+                        tick={{ fontSize: 12, fill: '#666' }}
+                        axisLine={{ stroke: '#ccc' }}
+                        tickLine={{ stroke: '#ccc' }}
+                      />
+                      <YAxis
+                        allowDecimals={false}
+                        tickMargin={10}
+                        tick={{ fontSize: 12, fill: '#666' }}
+                        axisLine={{ stroke: '#ccc' }}
+                        tickLine={{ stroke: '#ccc' }}
+                      />
                       <Tooltip cursor={{ fill: 'rgba(0,0,0,0.05)' }} content={<CustomTooltip />} />
-                      <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '14px' }} />
-                      <Bar dataKey="count" fill={chartColors[2]} name="Students" radius={[10, 10, 0, 0]} />
+                      <Legend 
+                        iconType="square" 
+                        wrapperStyle={{ 
+                          bottom: 20, 
+                          left: 20, 
+                          fontSize: 12,
+                          fontFamily: 'Arial, sans-serif'
+                        }}
+                      />
+                      <Bar 
+                        dataKey="count" 
+                        fill="#10B981" 
+                        name="Students" 
+                        radius={[10, 10, 0, 0]} 
+                        barSize={30} // Increased bar width
+                      />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
