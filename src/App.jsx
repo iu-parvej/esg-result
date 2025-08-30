@@ -37,7 +37,6 @@ const studentImageMap = {
 const sharedImageUrl = "https://i.ibb.co/BVc0jwkq/JASMIN-AKTER-MUKTA.png"; // JASMIN AKTER MUKTA's image
 const studentsUsingSharedImage = [
     "2031042", // KHADIJA AKTER
-    "2031046", // MAHFUZA KHATUN
     "2031044", // MAHMUDA JANNAT OWYSHE
     "2031025", // MEFTAHUL JANNAT
     "2031036", // MST. AFROZA KHATUN (roll 2031036)
@@ -47,7 +46,7 @@ const studentsUsingSharedImage = [
     "2031027" // SADIA ISLAM
 ];
 
-// Manually extracted data from the provided Excel sheet with corrected values
+// Updated student data based on user's corrections
 const studentData = [
     {
         "name": "KOBIR HOSSAIN ",
@@ -870,7 +869,7 @@ const CompareModal = ({ isOpen, onClose, studentData, onCompare }) => {
                                             onClick={() => handleRemoveStudent(student.roll)}
                                             className="text-red-500 hover:text-red-700 text-xl font-bold"
                                         >
-                                            \u00d7
+                                            &times;
                                         </button>
                                     </div>
                                 ))}
@@ -1887,7 +1886,20 @@ function App() {
                                     <tbody className="bg-white divide-y divide-gray-200">{
                                         sortedStudentData.map((student) => (
                                             <tr key={student.roll} className="hover:bg-gray-50">
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{student.name}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                    <div className="flex items-center space-x-3">
+                                                        <img
+                                                            src={student.imageUrl}
+                                                            alt={`${student.name} profile`}
+                                                            className="h-8 w-8 rounded-full object-cover"
+                                                            onError={(e) => {
+                                                                e.target.onerror = null;
+                                                                e.target.src = "https://placehold.co/32x32/aabbcc/ffffff?text=No+Image";
+                                                            }}
+                                                        />
+                                                        <span>{student.name}</span>
+                                                    </div>
+                                                </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{student.roll}</td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {student.gpa_1_1 !== undefined ?
