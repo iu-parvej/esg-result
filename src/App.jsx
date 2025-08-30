@@ -52,223 +52,223 @@ const studentData = [
         "name": "MEFTAHUL JANNAT", "roll": "2031025",
         "gpa_1_1": 3.90, "grade_1_1": "A-", "gpa_1_2": 3.737, "grade_1_2": "A-",
         "gpa_2_1": 3.779, "grade_2_1": "A", "gpa_2_2": 3.852, "grade_2_2": "A",
-        "cgpa": 3.82
+        "gpa_3_1": 3.89, "grade_3_1": "B+",
     },
     {
         "name": "MD. PARVEJ HOSSAIN", "roll": "2031005",
         "gpa_1_1": 3.74, "grade_1_1": "A-", "gpa_1_2": 3.612, "grade_1_2": "A-",
         "gpa_2_1": 3.750, "grade_2_1": "A-", "gpa_2_2": 3.886, "grade_2_2": "A",
-        "cgpa": 3.76
+        "gpa_3_1": 3.936, "grade_3_1": "A",
     },
     {
         "name": "MST. AFROZA KHATUN", "roll": "2031036",
         "gpa_1_1": 3.67, "grade_1_1": "A-", "gpa_1_2": 3.638, "grade_1_2": "A-",
         "gpa_2_1": 3.605, "grade_2_1": "A-", "gpa_2_2": 3.992, "grade_2_2": "A",
-        "cgpa": 3.71
+        "gpa_3_1": 3.85, "grade_3_1": "A",
     },
     {
         "name": "MOHD. TAKIUDDIN", "roll": "2031003",
         "gpa_1_1": 3.60, "grade_1_1": "A-", "gpa_1_2": 3.651, "grade_1_2": "A-",
         "gpa_2_1": 3.605, "grade_2_1": "A-", "gpa_2_2": 3.841, "grade_2_2": "A",
-        "cgpa": 3.67
+        "gpa_3_1": 3.566, "grade_3_1": "A-",
     },
     {
         "name": "SHAFKAT TASEEN SADIYA", "roll": "2031030", // Corrected name here
         "gpa_1_1": 3.58, "grade_1_1": "A-", "gpa_1_2": 3.579, "grade_1_2": "A-",
         "gpa_2_1": 3.551, "grade_2_1": "A-", "gpa_2_2": 3.852, "grade_2_2": "A",
-        "cgpa": 3.67
+        "gpa_3_1": 3.82, "grade_3_1": "B+",
     },
     {
         "name": "MST. AFROZA KHATUN", "roll": "2031024",
         "gpa_1_1": 3.52, "grade_1_1": "A-", "gpa_1_2": 3.737, "grade_1_2": "A-",
         "gpa_2_1": 3.587, "grade_2_1": "A-", "gpa_2_2": 3.716, "grade_2_2": "A-",
-        "cgpa": 3.64
+        "gpa_3_1": 3.92, "grade_3_1": "A",
     },
     {
         "name": "MST. ANANNA-AFRIN", "roll": "2031040",
         "gpa_1_1": 3.44, "grade_1_1": "B+", "gpa_1_2": 3.592, "grade_1_2": "A-",
         "gpa_2_1": 3.640, "grade_2_1": "A-", "gpa_2_2": 3.864, "grade_2_2": "A",
-        "cgpa": 3.63
+        "gpa_3_1": 3.91, "grade_3_1": "A",
     },
     {
         "name": "ORPA AHMED", "roll": "2031041",
         "gpa_1_1": 3.53, "grade_1_1": "A-", "gpa_1_2": 3.704, "grade_1_2": "A-",
         "gpa_2_1": 3.552, "grade_2_1": "A-", "gpa_2_2": 3.739, "grade_2_2": "A-",
-        "cgpa": 3.63
+        "gpa_3_1": 3.89, "grade_3_1": "A",
     },
     {
         "name": "MD. SHANZAD ALI", "roll": "2031012",
         "gpa_1_1": 3.45, "grade_1_1": "B+", "gpa_1_2": 3.566, "grade_1_2": "A-",
         "gpa_2_1": 3.517, "grade_2_1": "A-", "gpa_2_2": 3.773, "grade_2_2": "A-",
-        "cgpa": 3.58
+        "gpa_3_1": 3.91, "grade_3_1": "A",
     },
     {
         "name": "HOSSAIN MOHAMMAD SHIHAB", "roll": "2031013",
         "gpa_1_1": 3.43, "grade_1_1": "B+", "gpa_1_2": 3.579, "grade_1_2": "A-",
         "gpa_2_1": 3.500, "grade_2_1": "A-", "gpa_2_2": 3.795, "grade_2_2": "A-",
-        "cgpa": 3.58
+        "gpa_3_1": 3.82, "grade_3_1": "B+",
     },
     {
         "name": "MD. OMAYER HAQUE KHAN", "roll": "2031016",
         "gpa_1_1": 3.42, "grade_1_1": "B+", "gpa_1_2": 3.559, "grade_1_2": "A-",
         "gpa_2_1": 3.483, "grade_2_1": "B+", "gpa_2_2": 3.739, "grade_2_2": "A-",
-        "cgpa": 3.55
+        "gpa_3_1": 3.802, "grade_3_1": "A-",
     },
     {
         "name": "KHADIJA AKTER", "roll": "2031042",
         "gpa_1_1": 3.36, "grade_1_1": "B+", "gpa_1_2": 3.559, "grade_1_2": "A-",
         "gpa_2_1": 3.517, "grade_2_1": "A-", "gpa_2_2": 3.682, "grade_2_2": "A-",
-        "cgpa": 3.53
+        "gpa_3_1": 3.89, "grade_3_1": "A",
     },
     {
         "name": "KOBIR HOSSAIN", "roll": "2031001",
         "gpa_1_1": 3.54, "grade_1_1": "A-", "gpa_1_2": 3.421, "grade_1_2": "B+",
         "gpa_2_1": 3.517, "grade_2_1": "A-", "gpa_2_2": 3.517, "grade_2_2": "A-",
-        "cgpa": 3.50
+        "gpa_3_1": 3.72, "grade_3_1": "A-",
     },
     {
         "name": "MOST. MAHFUJA ANAN", "roll": "2031023",
         "gpa_1_1": 3.37, "grade_1_1": "B+", "gpa_1_2": 3.546, "grade_1_2": "A-",
         "gpa_2_1": 3.360, "grade_2_1": "B+", "gpa_2_2": 3.705, "grade_2_2": "A-",
-        "cgpa": 3.50
+        "gpa_3_1": 3.9, "grade_3_1": "A",
     },
     {
         "name": "SADIA ISLAM", "roll": "2031027",
         "gpa_1_1": 3.44, "grade_1_1": "B+", "gpa_1_2": 3.382, "grade_1_2": "B+",
         "gpa_2_1": 3.448, "grade_2_1": "B+", "gpa_2_2": 3.682, "grade_2_2": "A-",
-        "cgpa": 3.49
+        "gpa_3_1": 3.82, "grade_3_1": "B+",
     },
     {
         "name": "WASHIM SHAHED SOVON", "roll": "2031010",
         "gpa_1_1": 3.21, "grade_1_1": "B", "gpa_1_2": 3.487, "grade_1_2": "B+",
         "gpa_2_1": 3.430, "grade_2_1": "B+", "gpa_2_2": 3.784, "grade_2_2": "A-",
-        "cgpa": 3.48
+        "gpa_3_1": 3.974, "grade_3_1": "A+",
     },
     {
         "name": "MD. NAFIU-UL-HAQUE", "roll": "2031017",
         "gpa_1_1": 3.32, "grade_1_1": "B+", "gpa_1_2": 3.289, "grade_1_2": "B+",
         "gpa_2_1": 3.355, "grade_2_1": "B+", "gpa_2_2": 3.733, "grade_2_2": "A-",
-        "cgpa": 3.42
+        "gpa_3_1": 3.64, "grade_3_1": "A-",
     },
     {
         "name": "JASMIN AKTER MUKTA", "roll": "2031032",
         "gpa_1_1": 3.22, "grade_1_1": "B", "gpa_1_2": 3.553, "grade_1_2": "A-",
         "gpa_2_1": 3.203, "grade_2_1": "B", "gpa_2_2": 3.67, "grade_2_2": "A-",
-        "cgpa": 3.41
+        "gpa_3_1": 3.67, "grade_3_1": "A-",
     },
     {
         "name": "UMME SAMIHA ISLAM", "roll": "2031038",
         "gpa_1_1": 3.32, "grade_1_1": "B+", "gpa_1_2": 3.428, "grade_1_2": "B+",
         "gpa_2_1": 3.331, "grade_2_1": "B+", "gpa_2_2": 3.506, "grade_2_2": "A-",
-        "cgpa": 3.40
+        "gpa_3_1": 3.79, "grade_3_1": "A-",
     },
     {
         "name": "MD. TORIKUL ISLAM HIMEL", "roll": "2031008",
         "gpa_1_1": 3.03, "grade_1_1": "B", "gpa_1_2": 3.513, "grade_1_2": "A-",
         "gpa_2_1": 3.413, "grade_2_1": "B+", "gpa_2_2": 3.614, "grade_2_2": "A-",
-        "cgpa": 3.39
+        "gpa_3_1": 3.82, "grade_3_1": "B+",
     },
     {
         "name": "ASHIKA RAHMAN PANNA", "roll": "2031039",
         "gpa_1_1": 3.22, "grade_1_1": "B", "gpa_1_2": 3.434, "grade_1_2": "B+",
         "gpa_2_1": 3.273, "grade_2_1": "B+", "gpa_2_2": 3.528, "grade_2_2": "A-",
-        "cgpa": 3.36
+        "gpa_3_1": 3.69, "grade_3_1": "A-",
     },
     {
         "name": "RUKAIYA HOSSAIN", "roll": "2031045",
         "gpa_1_1": 3.05, "grade_1_1": "B", "gpa_1_2": 3.454, "grade_1_2": "B+",
         "gpa_2_1": 3.326, "grade_2_1": "B+", "gpa_2_2": 3.619, "grade_2_2": "A-",
-        "cgpa": 3.36
+        "gpa_3_1": 3.48, "grade_3_1": "B+",
     },
     {
         "name": "MD. SHAHRIAR HOSSAIN", "roll": "2031021",
         "gpa_1_1": 3.34, "grade_1_1": "B+", "gpa_1_2": 3.368, "grade_1_2": "B+",
         "gpa_2_1": 3.110, "grade_2_1": "B", "gpa_2_2": 3.486, "grade_2_2": "B+",
-        "cgpa": 3.32
+        "gpa_3_1": 3.57, "grade_3_1": "A-",
     },
     {
         "name": "TUSHAR BISWAS", "roll": "2031019",
         "gpa_1_1": 2.92, "grade_1_1": "B-", "gpa_1_2": 3.434, "grade_1_2": "B+",
         "gpa_2_1": 3.355, "grade_2_1": "B+", "gpa_2_2": 3.574, "grade_2_2": "A-",
-        "cgpa": 3.32
+        "gpa_3_1": 3.77, "grade_3_1": "A-",
     },
     {
         "name": "MST. ANIKA TABASSUM", "roll": "2031037",
         "gpa_1_1": 3.17, "grade_1_1": "B", "gpa_1_2": 3.414, "grade_1_2": "B+",
         "gpa_2_1": 3.233, "grade_2_1": "B", "gpa_2_2": 3.369, "grade_2_2": "B+",
-        "cgpa": 3.30
+        "gpa_3_1": 3.78, "grade_3_1": "A-",
     },
     {
         "name": "MD. HABIBUL HASAN", "roll": "2031011",
         "gpa_1_1": 3.34, "grade_1_1": "B+", "gpa_1_2": 3.382, "grade_1_2": "B+",
         "gpa_2_1": 3.157, "grade_2_1": "B", "gpa_2_2": 3.301, "grade_2_2": "B+",
-        "cgpa": 3.30
+        "gpa_3_1": 3.44, "grade_3_1": "B+",
     },
     {
         "name": "AUTHORY BISWAS BIDDA", "roll": "2031048",
         "gpa_1_1": 3.25, "grade_1_1": "B", "gpa_1_2": 3.211, "grade_1_2": "B",
         "gpa_2_1": 3.070, "grade_2_1": "B", "gpa_2_2": 3.631, "grade_2_2": "A-",
-        "cgpa": 3.29
+        "gpa_3_1": 3.58, "grade_3_1": "A-",
     },
     {
         "name": "MD. EMRAN HOSSAIN", "roll": "2031018",
         "gpa_1_1": 2.85, "grade_1_1": "B-", "gpa_1_2": 3.283, "grade_1_2": "B+",
         "gpa_2_1": 3.116, "grade_2_1": "B", "gpa_2_2": 3.653, "grade_2_2": "A-",
-        "cgpa": 3.23
+        "gpa_3_1": 3.653, "grade_3_1": "A-",
     },
     {
         "name": "MAHMUDA JANNAT OWYSHE", "roll": "2031044",
         "gpa_1_1": 3.10, "grade_1_1": "B", "gpa_1_2": 3.289, "grade_1_2": "B+",
         "gpa_2_1": 2.797, "grade_2_1": "B-", "gpa_2_2": 3.483, "grade_2_2": "B+",
-        "cgpa": 3.17
+        "gpa_3_1": 3.483, "grade_3_1": "B+",
     },
     {
         "name": "MD. MASHUK E RAHMAN", "roll": "2031006",
         "gpa_1_1": 3.16, "grade_1_1": "B", "gpa_1_2": 3.224, "grade_1_2": "B",
         "gpa_2_1": 2.791, "grade_2_1": "B-", "gpa_2_2": 3.472, "grade_2_2": "B+",
-        "cgpa": 3.16
+        "gpa_3_1": 3.566, "grade_3_1": "A-",
     },
     {
         "name": "MAHFUZA KHATUN", "roll": "2031046",
         "gpa_1_1": 2.88, "grade_1_1": "B-", "gpa_1_2": 3.072, "grade_1_2": "B",
         "gpa_2_1": 2.953, "grade_2_1": "B-", "gpa_2_2": 3.483, "grade_2_2": "B+",
-        "cgpa": 3.10
+        "gpa_3_1": 3.49, "grade_3_1": "B+",
     },
     {
         "name": "MD. RASHIDUL ISLAM", "roll": "2031009",
         "gpa_1_1": 2.96, "grade_1_1": "B-", "gpa_1_2": 3.184, "grade_1_2": "B",
         "gpa_2_1": 2.744, "grade_2_1": "C+", "gpa_2_2": 3.426, "grade_2_2": "B+",
-        "cgpa": 3.08
+        "gpa_3_1": 3.468, "grade_3_1": "B+",
     },
     {
         "name": "MD. NAIMUL ISLAM", "roll": "2031004",
         "gpa_1_1": 2.71, "grade_1_1": "C", "gpa_1_2": 3.039, "grade_1_2": "B",
         "gpa_2_1": 3.047, "grade_2_1": "B", "gpa_2_2": 3.438, "grade_2_2": "B+",
-        "cgpa": 3.06
+        "gpa_3_1": 3.936, "grade_3_1": "A",
     },
     {
         "name": "NAFiJA TASNIM ANANNA", "roll": "2031034", // Corrected name here
         "gpa_1_1": 2.78, "grade_1_1": "B-", "gpa_1_2": 3.132, "grade_1_2": "B",
         "gpa_2_1": 2.930, "grade_2_1": "B-", "gpa_2_2": 3.381, "grade_2_2": "B+",
-        "cgpa": 3.06
+        "gpa_3_1": 3.19, "grade_3_1": "B",
     },
     {
         "name": "JANNATUL MAOUA PROME", "roll": "2031043",
         "gpa_1_1": 2.70, "grade_1_1": "C", "gpa_1_2": 3.039, "grade_1_2": "B",
         "gpa_2_1": 3.070, "grade_2_1": "B", "gpa_2_2": 3.267, "grade_2_2": "B",
-        "cgpa": 3.02
+        "gpa_3_1": 3.82, "grade_3_1": "B+",
     },
     {
         "name": "M.D. BELAL HOSSAIN BADHON", "roll": "2031007",
         "gpa_1_1": 2.82, "grade_1_1": "B-", "gpa_1_2": 3.059, "grade_1_2": "B",
         "gpa_2_1": 2.895, "grade_2_1": "B-", "gpa_2_2": 3.233, "grade_2_2": "B",
-        "cgpa": 3.00
+        "gpa_3_1": 3.391, "grade_3_1": "B+",
     },
     {
         "name": "MST. SULTANA PARVIN SHIFA", "roll": "2031028",
         "gpa_1_1": 2.76, "grade_1_1": "C", "gpa_1_2": 2.480, "grade_1_2": "C",
         "gpa_2_1": 1.895, "grade_2_1": "F", "gpa_2_2": 2.438, "grade_2_2": "C",
-        "cgpa": 2.39
+        "gpa_3_1": 2.953, "grade_3_1": "C",
     }
 ].map(student => {
     let imageUrl = studentImageMap[student.roll];
@@ -279,13 +279,18 @@ const studentData = [
     if (!imageUrl) {
         imageUrl = "https://placehold.co/96x96/aabbcc/ffffff?text=No+Image"; // Generic placeholder
     }
-    return { ...student, imageUrl };
+
+    // Calculate new CGPA as the average of the five semesters
+    const totalGpa = (student.gpa_1_1 + student.gpa_1_2 + student.gpa_2_1 + student.gpa_2_2 + student.gpa_3_1);
+    const newCgpa = (totalGpa / 5).toFixed(2);
+    
+    return { ...student, imageUrl, cgpa: parseFloat(newCgpa) };
 });
 
 // Define a custom color palette for the charts for a modern look
 const chartColors = ['#6366F1', '#EC4899', '#10B981', '#F59E0B', '#EF4444', '#3B82F6', '#8B5CF6'];
 
-// Custom Tooltip for CGPA Distribution (Updated with a scrollable container for rolls)
+// Custom Tooltip for CGPA Distribution
 const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
         const data = payload[0].payload;
@@ -477,6 +482,10 @@ function App() {
                                     <td>Fourth Semester</td>
                                     <td>${getGrade('gpa_2_2', 'grade_2_2')}</td>
                                 </tr>
+                                <tr>
+                                    <td>Fifth Semester</td>
+                                    <td>${getGrade('gpa_3_1', 'grade_3_1')}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -574,7 +583,7 @@ function App() {
         const grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F']; // Define order of grades
         studentData.forEach(student => {
             // Collect all grades from all semesters
-            ['grade_1_1', 'grade_1_2', 'grade_2_1', 'grade_2_2'].forEach(gradeKey => {
+            ['grade_1_1', 'grade_1_2', 'grade_2_1', 'grade_2_2', 'grade_3_1'].forEach(gradeKey => {
                 const grade = student[gradeKey];
                 if (grade) {
                     gradeCounts[grade] = (gradeCounts[grade] || 0) + 1;
@@ -596,7 +605,7 @@ function App() {
         const semesterData = {}; // { '1-1': { totalGpa: 0, count: 0 }, ... }
         studentData.forEach(student => {
             // Aggregate GPA for each semester
-            ['1_1', '1_2', '2_1', '2_2'].forEach(sem => {
+            ['1_1', '1_2', '2_1', '2_2', '3_1'].forEach(sem => {
                 const gpaKey = `gpa_${sem}`;
                 const semesterName = sem.replace('_', '-'); // Format for display
                 if (student[gpaKey] !== undefined) {
@@ -621,10 +630,11 @@ function App() {
             '1-2': 'Second Semester',
             '2-1': 'Third Semester',
             '2-2': 'Fourth Semester',
+            '3-1': 'Fifth Semester',
         };
         
         // Sort semesters for proper line chart display and apply display names
-        const semesterOrder = ['1-1', '1-2', '2-1', '2-2'];
+        const semesterOrder = ['1-1', '1-2', '2-1', '2-2', '3-1'];
         return trend.sort((a, b) => semesterOrder.indexOf(a.semester) - semesterOrder.indexOf(b.semester))
                 .map(item => ({ ...item, semester: semesterDisplayNames[item.semester] || item.semester }));
     }, []);
@@ -634,7 +644,7 @@ function App() {
         if (!selectedStudent) return [];
         
         const trend = [];
-        const semesterOrder = ['1_1', '1_2', '2_1', '2_2'];
+        const semesterOrder = ['1_1', '1_2', '2_1', '2_2', '3_1'];
         
         // Process each semester in order
         for (const sem of semesterOrder) {
@@ -662,6 +672,7 @@ function App() {
             '1-2': 'Second Semester',
             '2-1': 'Third Semester',
             '2-2': 'Fourth Semester',
+            '3-1': 'Fifth Semester',
         };
         
         // Sort by semester order
@@ -689,11 +700,16 @@ function App() {
                 return [1.0, 4.0];
             }
             
-            // Add a small buffer to min/max for better visualization, ensuring it doesn't go below 0 or above 4.0
-            return [
-                Math.max(0, minGpa - 0.1),
-                Math.min(4.0, maxGpa + 0.1)
-            ];
+            // Add a small buffer for better visualization.
+            // Ensure the domain is at least a small range if min and max are the same.
+            const padding = 0.1;
+            const finalMin = Math.max(0, minGpa - padding);
+            const finalMax = Math.min(4.0, maxGpa + padding);
+            // If min and max are the same, expand the domain slightly.
+            if (finalMin === finalMax) {
+                return [Math.max(0, finalMin - 0.5), Math.min(4.0, finalMax + 0.5)];
+            }
+            return [finalMin, finalMax];
         } catch (error) {
             console.error("Error calculating GPA domain:", error);
             return [1.0, 4.0];
@@ -840,10 +856,10 @@ function App() {
                 {/* Header */}
                 <div className="bg-gradient-to-r from-purple-600 to-indigo-700 p-6 sm:p-8 text-white text-center rounded-t-2xl">
                     <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                        ESG 20-21 Result Dashboard {/* Updated Dashboard Title */}
+                        ESG 20-21 Result Dashboard
                     </h1>
                     <p className="mt-2 text-lg sm:text-xl opacity-90">
-                        Islamic University Bangladesh {/* Updated University Name */}
+                        Islamic University Bangladesh
                     </p>
                 </div>
                 
@@ -898,7 +914,7 @@ function App() {
                 <div className="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Conditional rendering based on selectedStudent */}
                     {selectedStudent ? (
-                        // Layout when a student is selected (First Screenshot Design)
+                        // Layout when a student is selected
                         <>
                             <div className="lg:col-span-1 bg-white p-6 rounded-xl shadow-lg border border-gray-200">
                                 <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Selected Student Details</h2>
@@ -950,6 +966,14 @@ function App() {
                                                 <span className="font-medium">
                                                     {selectedStudent.gpa_2_2 !== undefined && selectedStudent.gpa_2_2 !== null ?
                                                         `${selectedStudent.gpa_2_2.toFixed(3)} (${selectedStudent.grade_2_2 || 'N/A'})` :
+                                                        'N/A'}
+                                                </span>
+                                            </li>
+                                             <li className="flex justify-between">
+                                                <span>Fifth Semester:</span>
+                                                <span className="font-medium">
+                                                    {selectedStudent.gpa_3_1 !== undefined && selectedStudent.gpa_3_1 !== null ?
+                                                        `${selectedStudent.gpa_3_1.toFixed(3)} (${selectedStudent.grade_3_1 || 'N/A'})` :
                                                         'N/A'}
                                                 </span>
                                             </li>
@@ -1142,6 +1166,12 @@ function App() {
                                             </th>
                                             <th
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                                                onClick={() => requestSort('gpa_3_1')}
+                                            >
+                                                Fifth Semester {getSortIndicator('gpa_3_1')}
+                                            </th>
+                                            <th
+                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                                                 onClick={() => requestSort('cgpa')}
                                             >
                                                 CGPA {getSortIndicator('cgpa')}
@@ -1171,6 +1201,11 @@ function App() {
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {student.gpa_2_2 !== undefined ?
                                                         `${student.gpa_2_2.toFixed(3)} (${student.grade_2_2 || 'N/A'})` :
+                                                        'N/A'}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    {student.gpa_3_1 !== undefined ?
+                                                        `${student.gpa_3_1.toFixed(3)} (${student.grade_3_1 || 'N/A'})` :
                                                         'N/A'}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-indigo-600">{student.cgpa}</td>
