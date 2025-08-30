@@ -70,13 +70,13 @@ const studentData = [
         "name": "MOHD. TAKIUDDIN", "roll": "2031003",
         "gpa_1_1": 3.60, "grade_1_1": "A-", "gpa_1_2": 3.651, "grade_1_2": "A-",
         "gpa_2_1": 3.605, "grade_2_1": "A-", "gpa_2_2": 3.841, "grade_2_2": "A",
-        "gpa_3_1": 3.566, "grade_3_1": "A-",
+        "gpa_3_1": 3.936, "grade_3_1": "A-",
     },
     {
         "name": "SHAFKAT TASEEN SADIYA", "roll": "2031030", // Corrected name here
         "gpa_1_1": 3.58, "grade_1_1": "A-", "gpa_1_2": 3.579, "grade_1_2": "A-",
         "gpa_2_1": 3.551, "grade_2_1": "A-", "gpa_2_2": 3.852, "grade_2_2": "A",
-        "gpa_3_1": 3.82, "grade_3_1": "B+",
+        "gpa_3_1": 3.86, "grade_3_1": "B+",
     },
     {
         "name": "MST. AFROZA KHATUN", "roll": "2031024",
@@ -112,7 +112,7 @@ const studentData = [
         "name": "MD. OMAYER HAQUE KHAN", "roll": "2031016",
         "gpa_1_1": 3.42, "grade_1_1": "B+", "gpa_1_2": 3.559, "grade_1_2": "A-",
         "gpa_2_1": 3.483, "grade_2_1": "B+", "gpa_2_2": 3.739, "grade_2_2": "A-",
-        "gpa_3_1": 3.802, "grade_3_1": "A-",
+        "gpa_3_1": 3.87, "grade_3_1": "A-",
     },
     {
         "name": "KHADIJA AKTER", "roll": "2031042",
@@ -124,7 +124,7 @@ const studentData = [
         "name": "KOBIR HOSSAIN", "roll": "2031001",
         "gpa_1_1": 3.54, "grade_1_1": "A-", "gpa_1_2": 3.421, "grade_1_2": "B+",
         "gpa_2_1": 3.517, "grade_2_1": "A-", "gpa_2_2": 3.517, "grade_2_2": "A-",
-        "gpa_3_1": 3.72, "grade_3_1": "A-",
+        "gpa_3_1": 3.705, "grade_3_1": "A-",
     },
     {
         "name": "MOST. MAHFUJA ANAN", "roll": "2031023",
@@ -154,25 +154,25 @@ const studentData = [
         "name": "JASMIN AKTER MUKTA", "roll": "2031032",
         "gpa_1_1": 3.22, "grade_1_1": "B", "gpa_1_2": 3.553, "grade_1_2": "A-",
         "gpa_2_1": 3.203, "grade_2_1": "B", "gpa_2_2": 3.67, "grade_2_2": "A-",
-        "gpa_3_1": 3.67, "grade_3_1": "A-",
+        "gpa_3_1": 3.735, "grade_3_1": "A-",
     },
     {
         "name": "UMME SAMIHA ISLAM", "roll": "2031038",
         "gpa_1_1": 3.32, "grade_1_1": "B+", "gpa_1_2": 3.428, "grade_1_2": "B+",
         "gpa_2_1": 3.331, "grade_2_1": "B+", "gpa_2_2": 3.506, "grade_2_2": "A-",
-        "gpa_3_1": 3.79, "grade_3_1": "A-",
+        "gpa_3_1": 3.78, "grade_3_1": "A-",
     },
     {
         "name": "MD. TORIKUL ISLAM HIMEL", "roll": "2031008",
         "gpa_1_1": 3.03, "grade_1_1": "B", "gpa_1_2": 3.513, "grade_1_2": "A-",
         "gpa_2_1": 3.413, "grade_2_1": "B+", "gpa_2_2": 3.614, "grade_2_2": "A-",
-        "gpa_3_1": 3.82, "grade_3_1": "B+",
+        "gpa_3_1": 3.70, "grade_3_1": "B+",
     },
     {
         "name": "ASHIKA RAHMAN PANNA", "roll": "2031039",
         "gpa_1_1": 3.22, "grade_1_1": "B", "gpa_1_2": 3.434, "grade_1_2": "B+",
         "gpa_2_1": 3.273, "grade_2_1": "B+", "gpa_2_2": 3.528, "grade_2_2": "A-",
-        "gpa_3_1": 3.69, "grade_3_1": "A-",
+        "gpa_3_1": 3.79, "grade_3_1": "A-",
     },
     {
         "name": "RUKAIYA HOSSAIN", "roll": "2031045",
@@ -196,7 +196,7 @@ const studentData = [
         "name": "MST. ANIKA TABASSUM", "roll": "2031037",
         "gpa_1_1": 3.17, "grade_1_1": "B", "gpa_1_2": 3.414, "grade_1_2": "B+",
         "gpa_2_1": 3.233, "grade_2_1": "B", "gpa_2_2": 3.369, "grade_2_2": "B+",
-        "gpa_3_1": 3.78, "grade_3_1": "A-",
+        "gpa_3_1": 3.54, "grade_3_1": "A-",
     },
     {
         "name": "MD. HABIBUL HASAN", "roll": "2031011",
@@ -214,13 +214,13 @@ const studentData = [
         "name": "MD. EMRAN HOSSAIN", "roll": "2031018",
         "gpa_1_1": 2.85, "grade_1_1": "B-", "gpa_1_2": 3.283, "grade_1_2": "B+",
         "gpa_2_1": 3.116, "grade_2_1": "B", "gpa_2_2": 3.653, "grade_2_2": "A-",
-        "gpa_3_1": 3.653, "grade_3_1": "A-",
+        "gpa_3_1": 3.45, "grade_3_1": "A-",
     },
     {
         "name": "MAHMUDA JANNAT OWYSHE", "roll": "2031044",
         "gpa_1_1": 3.10, "grade_1_1": "B", "gpa_1_2": 3.289, "grade_1_2": "B+",
         "gpa_2_1": 2.797, "grade_2_1": "B-", "gpa_2_2": 3.483, "grade_2_2": "B+",
-        "gpa_3_1": 3.483, "grade_3_1": "B+",
+        "gpa_3_1": 2.9, "grade_3_1": "B+",
     },
     {
         "name": "MD. MASHUK E RAHMAN", "roll": "2031006",
@@ -244,7 +244,7 @@ const studentData = [
         "name": "MD. NAIMUL ISLAM", "roll": "2031004",
         "gpa_1_1": 2.71, "grade_1_1": "C", "gpa_1_2": 3.039, "grade_1_2": "B",
         "gpa_2_1": 3.047, "grade_2_1": "B", "gpa_2_2": 3.438, "grade_2_2": "B+",
-        "gpa_3_1": 3.936, "grade_3_1": "A",
+        "gpa_3_1": 3.56, "grade_3_1": "A",
     },
     {
         "name": "NAFiJA TASNIM ANANNA", "roll": "2031034", // Corrected name here
@@ -256,7 +256,7 @@ const studentData = [
         "name": "JANNATUL MAOUA PROME", "roll": "2031043",
         "gpa_1_1": 2.70, "grade_1_1": "C", "gpa_1_2": 3.039, "grade_1_2": "B",
         "gpa_2_1": 3.070, "grade_2_1": "B", "gpa_2_2": 3.267, "grade_2_2": "B",
-        "gpa_3_1": 3.82, "grade_3_1": "B+",
+        "gpa_3_1": 3.41, "grade_3_1": "B+",
     },
     {
         "name": "M.D. BELAL HOSSAIN BADHON", "roll": "2031007",
@@ -268,7 +268,7 @@ const studentData = [
         "name": "MST. SULTANA PARVIN SHIFA", "roll": "2031028",
         "gpa_1_1": 2.76, "grade_1_1": "C", "gpa_1_2": 2.480, "grade_1_2": "C",
         "gpa_2_1": 1.895, "grade_2_1": "F", "gpa_2_2": 2.438, "grade_2_2": "C",
-        "gpa_3_1": 2.953, "grade_3_1": "C",
+        "gpa_3_1": 2.955, "grade_3_1": "C",
     }
 ].map(student => {
     let imageUrl = studentImageMap[student.roll];
