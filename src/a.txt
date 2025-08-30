@@ -50,374 +50,152 @@ const studentsUsingSharedImage = [
 // Manually extracted data from the provided Excel sheet with corrected values
 const studentData = [
     {
-        "name": "KOBIR HOSSAIN ",
-        "roll": "2031001",
-        "gpa_1_1": 3.54,
-        "gpa_1_2": 3.421,
-        "gpa_2_1": 3.517,
-        "gpa_2_2": 3.517,
-        "gpa_3_1": 3.705,
-        "cgpa": 3.54
+        "name": "MEFTAHUL JANNAT", "roll": "2031025",
+        "gpa_1_1": 3.90, "gpa_1_2": 3.737, "gpa_2_1": 3.779, "gpa_2_2": 3.852, "gpa_3_1": 3.89,
     },
     {
-        "name": "MOHD. TAKIUDDIN ",
-        "roll": "2031003",
-        "gpa_1_1": 3.6,
-        "gpa_1_2": 3.651,
-        "gpa_2_1": 3.605,
-        "gpa_2_2": 3.841,
-        "gpa_3_1": 3.936,
-        "cgpa": 3.73
+        "name": "MD. PARVEJ HOSSAIN", "roll": "2031005",
+        "gpa_1_1": 3.74, "gpa_1_2": 3.612, "gpa_2_1": 3.750, "gpa_2_2": 3.886, "gpa_3_1": 3.936,
     },
     {
-        "name": "MD. NAIMUL ISLAM",
-        "roll": "2031004",
-        "gpa_1_1": 2.71,
-        "gpa_1_2": 3.039,
-        "gpa_2_1": 3.047,
-        "gpa_2_2": 3.438,
-        "gpa_3_1": 3.56,
-        "cgpa": 3.16
+        "name": "MST. AFROZA KHATUN", "roll": "2031036",
+        "gpa_1_1": 3.67, "gpa_1_2": 3.638, "gpa_2_1": 3.605, "gpa_2_2": 3.992, "gpa_3_1": 3.85,
     },
     {
-        "name": "MD. PARVEJ HOSSAIN ",
-        "roll": "2031005",
-        "gpa_1_1": 3.74,
-        "gpa_1_2": 3.612,
-        "gpa_2_1": 3.75,
-        "gpa_2_2": 3.886,
-        "gpa_3_1": 3.936,
-        "cgpa": 3.78
+        "name": "MOHD. TAKIUDDIN", "roll": "2031003",
+        "gpa_1_1": 3.60, "gpa_1_2": 3.651, "gpa_2_1": 3.605, "gpa_2_2": 3.841, "gpa_3_1": 3.566,
     },
     {
-        "name": "MD. MASHUK E RAHMAN ",
-        "roll": "2031006",
-        "gpa_1_1": 3.16,
-        "gpa_1_2": 3.224,
-        "gpa_2_1": 2.791,
-        "gpa_2_2": 3.472,
-        "gpa_3_1": 3.566,
-        "cgpa": 3.24
+        "name": "SHAFKAT TASEEN SADIYA", "roll": "2031030",
+        "gpa_1_1": 3.58, "gpa_1_2": 3.579, "gpa_2_1": 3.551, "gpa_2_2": 3.852, "gpa_3_1": 3.82,
     },
     {
-        "name": "M.D. BELAL HOSSAIN BADHON ",
-        "roll": "2031007",
-        "gpa_1_1": 2.82,
-        "gpa_1_2": 3.059,
-        "gpa_2_1": 2.895,
-        "gpa_2_2": 3.233,
-        "gpa_3_1": 3.391,
-        "cgpa": 3.08
+        "name": "MST. AFROZA KHATUN", "roll": "2031024",
+        "gpa_1_1": 3.52, "gpa_1_2": 3.737, "gpa_2_1": 3.587, "gpa_2_2": 3.716, "gpa_3_1": 3.92,
     },
     {
-        "name": "MD. TORIKUL ISLAM HIMAL ",
-        "roll": "2031008",
-        "gpa_1_1": 3.03,
-        "gpa_1_2": 3.513,
-        "gpa_2_1": 3.413,
-        "gpa_2_2": 3.614,
-        "gpa_3_1": 3.7,
-        "cgpa": 3.45
+        "name": "MST. ANANNA-AFRIN", "roll": "2031040",
+        "gpa_1_1": 3.44, "gpa_1_2": 3.592, "gpa_2_1": 3.640, "gpa_2_2": 3.864, "gpa_3_1": 3.91,
     },
     {
-        "name": "MD. RASHIDUL ISLAM",
-        "roll": "2031009",
-        "gpa_1_1": 2.96,
-        "gpa_1_2": 3.184,
-        "gpa_2_1": 2.744,
-        "gpa_2_2": 3.426,
-        "gpa_3_1": 3.468,
-        "cgpa": 3.16
+        "name": "ORPA AHMED", "roll": "2031041",
+        "gpa_1_1": 3.53, "gpa_1_2": 3.704, "gpa_2_1": 3.552, "gpa_2_2": 3.739, "gpa_3_1": 3.89,
     },
     {
-        "name": "WASHIM SHAHED SOVON ",
-        "roll": "2031010",
-        "gpa_1_1": 3.21,
-        "gpa_1_2": 3.487,
-        "gpa_2_1": 3.43,
-        "gpa_2_2": 3.784,
-        "gpa_3_1": 3.974,
-        "cgpa": 3.58
+        "name": "MD. SHANZAD ALI", "roll": "2031012",
+        "gpa_1_1": 3.45, "gpa_1_2": 3.566, "gpa_2_1": 3.517, "gpa_2_2": 3.773, "gpa_3_1": 3.91,
     },
     {
-        "name": "MD. HABIBUL HASAN ",
-        "roll": "2031011",
-        "gpa_1_1": 3.34,
-        "gpa_1_2": 3.382,
-        "gpa_2_1": 3.157,
-        "gpa_2_2": 3.301,
-        "gpa_3_1": 3.44,
-        "cgpa": 3.32
+        "name": "HOSSAIN MOHAMMAD SHIHAB", "roll": "2031013",
+        "gpa_1_1": 3.54, "gpa_1_2": 3.579, "gpa_2_1": 3.500, "gpa_2_2": 3.795, "gpa_3_1": 3.82,
     },
     {
-        "name": "MD. SHANZAD ALI ",
-        "roll": "2031012",
-        "gpa_1_1": 3.45,
-        "gpa_1_2": 3.566,
-        "gpa_2_1": 3.517,
-        "gpa_2_2": 3.773,
-        "gpa_3_1": 3.91,
-        "cgpa": 3.64
+        "name": "MD. OMAYER HAQUE KHAN", "roll": "2031016",
+        "gpa_1_1": 3.42, "gpa_1_2": 3.559, "gpa_2_1": 3.483, "gpa_2_2": 3.739, "gpa_3_1": 3.802,
     },
     {
-        "name": "HOSSAIN MOHAMMAD SHIHAB SHARAR HIMEL ",
-        "roll": "2031013",
-        "gpa_1_1": 3.54,
-        "gpa_1_2": 3.579,
-        "gpa_2_1": 3.5,
-        "gpa_2_2": 3.795,
-        "gpa_3_1": 3.82,
-        "cgpa": 3.65
+        "name": "KHADIJA AKTER", "roll": "2031042",
+        "gpa_1_1": 3.36, "gpa_1_2": 3.559, "gpa_2_1": 3.517, "gpa_2_2": 3.682, "gpa_3_1": 3.89,
     },
     {
-        "name": "MD. OMAYER HAQUE KHAN ",
-        "roll": "2031016",
-        "gpa_1_1": 3.42,
-        "gpa_1_2": 3.559,
-        "gpa_2_1": 3.483,
-        "gpa_2_2": 3.739,
-        "gpa_3_1": 3.807,
-        "cgpa": 3.6
+        "name": "KOBIR HOSSAIN", "roll": "2031001",
+        "gpa_1_1": 3.54, "gpa_1_2": 3.421, "gpa_2_1": 3.517, "gpa_2_2": 3.517, "gpa_3_1": 3.72,
     },
     {
-        "name": "MD. NAFIU-UL-HAQUE",
-        "roll": "2031017",
-        "gpa_1_1": 3.32,
-        "gpa_1_2": 3.289,
-        "gpa_2_1": 3.355,
-        "gpa_2_2": 3.733,
-        "gpa_3_1": 3.64,
-        "cgpa": 3.47
+        "name": "MOST. MAHFUJA ANAN", "roll": "2031023",
+        "gpa_1_1": 3.45, "gpa_1_2": 3.55, "gpa_2_1": 3.36, "gpa_2_2": 3.7, "gpa_3_1": 3.9,
     },
     {
-        "name": "MD. EMRAN HOSSAIN ",
-        "roll": "2031018",
-        "gpa_1_1": 2.85,
-        "gpa_1_2": 3.283,
-        "gpa_2_1": 3.116,
-        "gpa_2_2": 3.653,
-        "gpa_3_1": 3.45,
-        "cgpa": 3.27
+        "name": "SADIA ISLAM", "roll": "2031027",
+        "gpa_1_1": 3.44, "gpa_1_2": 3.382, "gpa_2_1": 3.448, "gpa_2_2": 3.682, "gpa_3_1": 3.82,
     },
     {
-        "name": "TUSHAR BISWAS",
-        "roll": "2031019",
-        "gpa_1_1": 2.92,
-        "gpa_1_2": 3.434,
-        "gpa_2_1": 3.355,
-        "gpa_2_2": 3.574,
-        "gpa_3_1": 3.77,
-        "cgpa": 3.41
+        "name": "WASHIM SHAHED SOVON", "roll": "2031010",
+        "gpa_1_1": 3.21, "gpa_1_2": 3.487, "gpa_2_1": 3.430, "gpa_2_2": 3.784, "gpa_3_1": 3.974,
     },
     {
-        "name": "MD. SHAHRIAR HOSSAIN ",
-        "roll": "2031021",
-        "gpa_1_1": 3.34,
-        "gpa_1_2": 3.368,
-        "gpa_2_1": 3.11,
-        "gpa_2_2": 3.466,
-        "gpa_3_1": 3.57,
-        "cgpa": 3.37
+        "name": "MD. NAFIU-UL-HAQUE", "roll": "2031017",
+        "gpa_1_1": 3.32, "gpa_1_2": 3.289, "gpa_2_1": 3.355, "gpa_2_2": 3.733, "gpa_3_1": 3.64,
     },
     {
-        "name": "MOST. MAHFUJA ANAN",
-        "roll": "2031023",
-        "gpa_1_1": 3.45,
-        "gpa_1_2": 3.55,
-        "gpa_2_1": 3.36,
-        "gpa_2_2": 3.7,
-        "gpa_3_1": 3.9,
-        "cgpa": 3.59
+        "name": "JASMIN AKTER MUKTA", "roll": "2031032",
+        "gpa_1_1": 3.22, "gpa_1_2": 3.553, "gpa_2_1": 3.203, "gpa_2_2": 3.67, "gpa_3_1": 3.67,
     },
     {
-        "name": "MOST. AFROZA KHATUN ",
-        "roll": "2031024",
-        "gpa_1_1": 3.52,
-        "gpa_1_2": 3.737,
-        "gpa_2_1": 3.587,
-        "gpa_2_2": 3.716,
-        "gpa_3_1": 3.92,
-        "cgpa": 3.7
+        "name": "UMME SAMIHA ISLAM", "roll": "2031038",
+        "gpa_1_1": 3.32, "gpa_1_2": 3.428, "gpa_2_1": 3.331, "gpa_2_2": 3.506, "gpa_3_1": 3.79,
     },
     {
-        "name": "MEFTAHUL JANNAT",
-        "roll": "2031025",
-        "gpa_1_1": 3.9,
-        "gpa_1_2": 3.737,
-        "gpa_2_1": 3.779,
-        "gpa_2_2": 3.852,
-        "gpa_3_1": 3.89,
-        "cgpa": 3.83
+        "name": "MD. TORIKUL ISLAM HIMEL", "roll": "2031008",
+        "gpa_1_1": 3.03, "gpa_1_2": 3.513, "gpa_2_1": 3.413, "gpa_2_2": 3.614, "gpa_3_1": 3.82,
     },
     {
-        "name": "SADIA ISLAM",
-        "roll": "2031027",
-        "gpa_1_1": 3.44,
-        "gpa_1_2": 3.382,
-        "gpa_2_1": 3.448,
-        "gpa_2_2": 3.682,
-        "gpa_3_1": 3.82,
-        "cgpa": 3.55
+        "name": "ASHIKA RAHMAN PANNA", "roll": "2031039",
+        "gpa_1_1": 3.22, "gpa_1_2": 3.434, "gpa_2_1": 3.273, "gpa_2_2": 3.528, "gpa_3_1": 3.69,
     },
     {
-        "name": "MST. SULTANA PARVIN SHIFA ",
-        "roll": "2031028",
-        "gpa_1_1": 2.76,
-        "gpa_1_2": 2.48,
-        "gpa_2_1": 1.895,
-        "gpa_2_2": 2.432,
-        "gpa_3_1": 2.955,
-        "cgpa": 2.5
+        "name": "RUKAIYA HOSSAIN", "roll": "2031045",
+        "gpa_1_1": 3.05, "gpa_1_2": 3.454, "gpa_2_1": 3.326, "gpa_2_2": 3.619, "gpa_3_1": 3.48,
     },
     {
-        "name": "SHAFKAT TASEEN SADIYA ",
-        "roll": "2031030",
-        "gpa_1_1": 3.58,
-        "gpa_1_2": 3.579,
-        "gpa_2_1": 3.651,
-        "gpa_2_2": 3.852,
-        "gpa_3_1": 3.86,
-        "cgpa": 3.7
+        "name": "MD. SHAHRIAR HOSSAIN", "roll": "2031021",
+        "gpa_1_1": 3.34, "gpa_1_2": 3.368, "gpa_2_1": 3.110, "gpa_2_2": 3.486, "gpa_3_1": 3.57,
     },
     {
-        "name": "JASMIN AKTER MUKTA ",
-        "roll": "2031032",
-        "gpa_1_1": 3.22,
-        "gpa_1_2": 3.553,
-        "gpa_2_1": 3.203,
-        "gpa_2_2": 3.67,
-        "gpa_3_1": 3.735,
-        "cgpa": 3.48
+        "name": "TUSHAR BISWAS", "roll": "2031019",
+        "gpa_1_1": 2.92, "gpa_1_2": 3.434, "gpa_2_1": 3.355, "gpa_2_2": 3.574, "gpa_3_1": 3.77,
     },
     {
-        "name": "NAFIJA TASNIM ANNANA ",
-        "roll": "2031034",
-        "gpa_1_1": 2.78,
-        "gpa_1_2": 3.132,
-        "gpa_2_1": 2.93,
-        "gpa_2_2": 3.381,
-        "gpa_3_1": 3.19,
-        "cgpa": 3.08
+        "name": "MST. ANIKA TABASSUM", "roll": "2031037",
+        "gpa_1_1": 3.17, "gpa_1_2": 3.414, "gpa_2_1": 3.233, "gpa_2_2": 3.369, "gpa_3_1": 3.78,
     },
     {
-        "name": "MST. AFROZA KHATUN ",
-        "roll": "2031036",
-        "gpa_1_1": 3.67,
-        "gpa_1_2": 3.638,
-        "gpa_2_1": 3.605,
-        "gpa_2_2": 3.92,
-        "gpa_3_1": 3.85,
-        "cgpa": 3.74
+        "name": "MD. HABIBUL HASAN", "roll": "2031011",
+        "gpa_1_1": 3.34, "gpa_1_2": 3.382, "gpa_2_1": 3.157, "gpa_2_2": 3.301, "gpa_3_1": 3.44,
     },
     {
-        "name": "MST. ANIKA TABASSUM ",
-        "roll": "2031037",
-        "gpa_1_1": 3.17,
-        "gpa_1_2": 3.414,
-        "gpa_2_1": 3.233,
-        "gpa_2_2": 3.369,
-        "gpa_3_1": 3.54,
-        "cgpa": 3.35
+        "name": "AUTHORY BISWAS BIDDA", "roll": "2031048",
+        "gpa_1_1": 3.25, "gpa_1_2": 3.211, "gpa_2_1": 3.070, "gpa_2_2": 3.631, "gpa_3_1": 3.58,
     },
     {
-        "name": "UMME SAMIHA ISLAM ",
-        "roll": "2031038",
-        "gpa_1_1": 3.32,
-        "gpa_1_2": 3.428,
-        "gpa_2_1": 3.331,
-        "gpa_2_2": 3.506,
-        "gpa_3_1": 3.78,
-        "cgpa": 3.47
+        "name": "MD. EMRAN HOSSAIN", "roll": "2031018",
+        "gpa_1_1": 2.85, "gpa_1_2": 3.283, "gpa_2_1": 3.116, "gpa_2_2": 3.653, "gpa_3_1": 3.653,
     },
     {
-        "name": "ASHIKA RAHMAN PANNA",
-        "roll": "2031039",
-        "gpa_1_1": 3.22,
-        "gpa_1_2": 3.434,
-        "gpa_2_1": 3.273,
-        "gpa_2_2": 3.528,
-        "gpa_3_1": 3.79,
-        "cgpa": 3.45
+        "name": "MAHMUDA JANNAT OWYSHE", "roll": "2031044",
+        "gpa_1_1": 3.10, "gpa_1_2": 3.289, "gpa_2_1": 2.797, "gpa_2_2": 3.483, "gpa_3_1": 3.483,
     },
     {
-        "name": "MST. ANANNA AFRIN ",
-        "roll": "2031040",
-        "gpa_1_1": 3.44,
-        "gpa_1_2": 3.592,
-        "gpa_2_1": 3.64,
-        "gpa_2_2": 3.864,
-        "gpa_3_1": 3.91,
-        "cgpa": 3.69
+        "name": "MD. MASHUK E RAHMAN", "roll": "2031006",
+        "gpa_1_1": 3.16, "gpa_1_2": 3.224, "gpa_2_1": 2.791, "gpa_2_2": 3.472, "gpa_3_1": 3.566,
     },
     {
-        "name": "ORPA AHMED ",
-        "roll": "2031041",
-        "gpa_1_1": 3.53,
-        "gpa_1_2": 3.704,
-        "gpa_2_1": 3.552,
-        "gpa_2_2": 3.739,
-        "gpa_3_1": 3.89,
-        "cgpa": 3.68
+        "name": "MAHFUZA KHATUN", "roll": "2031046",
+        "gpa_1_1": 2.90, "gpa_1_2": 3.072, "gpa_2_1": 2.953, "gpa_2_2": 3.483, "gpa_3_1": 3.49,
     },
     {
-        "name": "KHADIJA AKTER ",
-        "roll": "2031042",
-        "gpa_1_1": 3.36,
-        "gpa_1_2": 3.559,
-        "gpa_2_1": 3.512,
-        "gpa_2_2": 3.682,
-        "gpa_3_1": 3.89,
-        "cgpa": 3.6
+        "name": "MD. RASHIDUL ISLAM", "roll": "2031009",
+        "gpa_1_1": 2.96, "gpa_1_2": 3.184, "gpa_2_1": 2.744, "gpa_2_2": 3.426, "gpa_3_1": 3.468,
     },
     {
-        "name": "JANNATUL MAOUA PROME ",
-        "roll": "2031043",
-        "gpa_1_1": 2.7,
-        "gpa_1_2": 3.039,
-        "gpa_2_1": 3.07,
-        "gpa_2_2": 3.267,
-        "gpa_3_1": 3.41,
-        "cgpa": 3.1
+        "name": "MD. NAIMUL ISLAM", "roll": "2031004",
+        "gpa_1_1": 2.71, "gpa_1_2": 3.039, "gpa_2_1": 3.047, "gpa_2_2": 3.438, "gpa_3_1": 3.936,
     },
     {
-        "name": "MAHMUDA JANNAT OWYSHE",
-        "roll": "2031044",
-        "gpa_1_1": 3.1,
-        "gpa_1_2": 3.289,
-        "gpa_2_1": 2.797,
-        "gpa_2_2": 3.483,
-        "gpa_3_1": 2.9,
-        "cgpa": 3.11
+        "name": "NAFiJA TASNIM ANANNA", "roll": "2031034",
+        "gpa_1_1": 2.78, "gpa_1_2": 3.132, "gpa_2_1": 2.930, "gpa_2_2": 3.381, "gpa_3_1": 3.19,
     },
     {
-        "name": "RUKAIYA HOSSAIN ",
-        "roll": "2031045",
-        "gpa_1_1": 3.05,
-        "gpa_1_2": 3.454,
-        "gpa_2_1": 3.326,
-        "gpa_2_2": 3.619,
-        "gpa_3_1": 3.48,
-        "cgpa": 3.39
+        "name": "JANNATUL MAOUA PROME", "roll": "2031043",
+        "gpa_1_1": 2.70, "gpa_1_2": 3.039, "gpa_2_1": 3.070, "gpa_2_2": 3.267, "gpa_3_1": 3.82,
     },
     {
-        "name": "MAHFUZA KHATUN ",
-        "roll": "2031046",
-        "gpa_1_1": 2.9,
-        "gpa_1_2": 3.072,
-        "gpa_2_1": 2.953,
-        "gpa_2_2": 3.483,
-        "gpa_3_1": 3.49,
-        "cgpa": 3.18
+        "name": "M.D. BELAL HOSSAIN BADHON", "roll": "2031007",
+        "gpa_1_1": 2.82, "gpa_1_2": 3.059, "gpa_2_1": 2.895, "gpa_2_2": 3.233, "gpa_3_1": 3.391,
     },
     {
-        "name": "AUTHOY BISWAS BIDDA ",
-        "roll": "2031048",
-        "gpa_1_1": 3.25,
-        "gpa_1_2": 3.211,
-        "gpa_2_1": 3.07,
-        "gpa_2_2": 3.631,
-        "gpa_3_1": 3.58,
-        "cgpa": 3.35
+        "name": "MST. SULTANA PARVIN SHIFA", "roll": "2031028",
+        "gpa_1_1": 2.76, "gpa_1_2": 2.480, "gpa_2_1": 1.895, "gpa_2_2": 2.438, "gpa_3_1": 2.953,
     }
 ].map(student => {
     let imageUrl = studentImageMap[student.roll];
@@ -441,14 +219,14 @@ const chartColors = ['#6366F1', '#EC4899', '#10B981', '#F59E0B', '#EF4444', '#3B
 const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
         const data = payload[0].payload;
-        // Format students list to fit without a scrollbar
+        // Collect all student rolls into a single comma-separated string
         const studentRolls = data.students.map(student => student.roll).join(', ');
         return (
-            <div className="p-4 bg-white border border-gray-300 rounded-lg shadow-xl text-sm max-w-sm">
-                <p className="font-bold text-gray-800 mb-2">{`CGPA \u2265 ${data.threshold}`}</p>
+            <div className="p-4 bg-white border border-gray-300 rounded-lg shadow-xl text-sm max-w-xs">
+                <p className="font-bold text-gray-800 mb-2">{`CGPA ≥ ${data.threshold}`}</p>
                 <p className="text-gray-700 mb-2">{`Number of Students: ${data.count}`}</p>
                 <p className="font-semibold text-gray-700 mb-1">Student Rolls:</p>
-                <div className="text-gray-600 break-words">
+                <div className="text-gray-600 break-words max-h-24 overflow-y-auto">
                     {studentRolls.length > 0 ? (
                         <span>{studentRolls}</span>
                     ) : (
@@ -489,34 +267,6 @@ const ComparisonView = ({ comparedStudents, onBack }) => {
             return result;
         });
     }, [comparedStudents]);
-
-    // Dynamic Y-axis domain for the comparison chart
-    const comparisonGpaDomain = useMemo(() => {
-        if (!comparisonChartData.length) return [1.0, 4.0];
-        try {
-            const allGpas = comparisonChartData.flatMap(d =>
-                Object.keys(d)
-                      .filter(key => key !== 'semester' && d[key] !== null && d[key] !== undefined)
-                      .map(key => d[key])
-            );
-            if (allGpas.length === 0) return [1.0, 4.0];
-            const minGpa = Math.min(...allGpas);
-            const maxGpa = Math.max(...allGpas);
-            if (isNaN(minGpa) || isNaN(maxGpa)) {
-                return [1.0, 4.0];
-            }
-            const padding = 0.1;
-            const finalMin = Math.max(0, minGpa - padding);
-            const finalMax = Math.min(4.0, maxGpa + padding);
-            if (finalMin === finalMax) {
-                return [Math.max(0, finalMin - 0.5), Math.min(4.0, finalMax + 0.5)];
-            }
-            return [finalMin, finalMax];
-        } catch (error) {
-            console.error("Error calculating comparison GPA domain:", error);
-            return [1.0, 4.0];
-        }
-    }, [comparisonChartData]);
 
     // Find the highest value in each category for highlighting
     const findHighestInCategory = useCallback((category) => {
@@ -588,13 +338,12 @@ const ComparisonView = ({ comparedStudents, onBack }) => {
                                     tickLine={{ stroke: '#ccc' }}
                                 />
                                 <YAxis
-                                    domain={comparisonGpaDomain}
+                                    domain={[1.0, 4.0]}
                                     tickCount={5}
                                     tickMargin={10}
                                     tick={{ fontSize: 12, fill: '#666' }}
                                     axisLine={{ stroke: '#ccc' }}
                                     tickLine={{ stroke: '#ccc' }}
-                                    tickFormatter={(value) => value.toFixed(2)}
                                 />
                                 <Tooltip
                                     contentStyle={{
@@ -657,15 +406,19 @@ const ComparisonView = ({ comparedStudents, onBack }) => {
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
                                     {/* First Semester */}
-                                    <tr>
+                                    <tr className={
+                                        findHighestInCategory('gpa_1_1').includes(comparedStudents[0].roll) ||
+                                        findHighestInCategory('gpa_1_1').includes(comparedStudents[1].roll) ||
+                                        (comparedStudents[2] && findHighestInCategory('gpa_1_1').includes(comparedStudents[2].roll)) ||
+                                        (comparedStudents[3] && findHighestInCategory('gpa_1_1').includes(comparedStudents[3].roll)) ||
+                                        (comparedStudents[4] && findHighestInCategory('gpa_1_1').includes(comparedStudents[4].roll))
+                                            ? 'bg-green-50' : ''
+                                    }>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             First Semester
                                         </td>
                                         {comparedStudents.map(student => (
-                                            <td 
-                                                key={student.roll} 
-                                                className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 ${findHighestInCategory('gpa_1_1').includes(student.roll) ? 'bg-green-50' : ''}`}
-                                            >
+                                            <td key={student.roll} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {student.gpa_1_1 !== undefined ? 
                                                     `${student.gpa_1_1.toFixed(3)}` : 
                                                     'N/A'}
@@ -674,15 +427,19 @@ const ComparisonView = ({ comparedStudents, onBack }) => {
                                     </tr>
                                     
                                     {/* Second Semester */}
-                                    <tr>
+                                    <tr className={
+                                        findHighestInCategory('gpa_1_2').includes(comparedStudents[0].roll) ||
+                                        findHighestInCategory('gpa_1_2').includes(comparedStudents[1].roll) ||
+                                        (comparedStudents[2] && findHighestInCategory('gpa_1_2').includes(comparedStudents[2].roll)) ||
+                                        (comparedStudents[3] && findHighestInCategory('gpa_1_2').includes(comparedStudents[3].roll)) ||
+                                        (comparedStudents[4] && findHighestInCategory('gpa_1_2').includes(comparedStudents[4].roll))
+                                            ? 'bg-green-50' : ''
+                                    }>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             Second Semester
                                         </td>
                                         {comparedStudents.map(student => (
-                                            <td 
-                                                key={student.roll} 
-                                                className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 ${findHighestInCategory('gpa_1_2').includes(student.roll) ? 'bg-green-50' : ''}`}
-                                            >
+                                            <td key={student.roll} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {student.gpa_1_2 !== undefined ? 
                                                     `${student.gpa_1_2.toFixed(3)}` : 
                                                     'N/A'}
@@ -691,15 +448,19 @@ const ComparisonView = ({ comparedStudents, onBack }) => {
                                     </tr>
                                     
                                     {/* Third Semester */}
-                                    <tr>
+                                    <tr className={
+                                        findHighestInCategory('gpa_2_1').includes(comparedStudents[0].roll) ||
+                                        findHighestInCategory('gpa_2_1').includes(comparedStudents[1].roll) ||
+                                        (comparedStudents[2] && findHighestInCategory('gpa_2_1').includes(comparedStudents[2].roll)) ||
+                                        (comparedStudents[3] && findHighestInCategory('gpa_2_1').includes(comparedStudents[3].roll)) ||
+                                        (comparedStudents[4] && findHighestInCategory('gpa_2_1').includes(comparedStudents[4].roll))
+                                            ? 'bg-green-50' : ''
+                                    }>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             Third Semester
                                         </td>
                                         {comparedStudents.map(student => (
-                                            <td 
-                                                key={student.roll} 
-                                                className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 ${findHighestInCategory('gpa_2_1').includes(student.roll) ? 'bg-green-50' : ''}`}
-                                            >
+                                            <td key={student.roll} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {student.gpa_2_1 !== undefined ? 
                                                     `${student.gpa_2_1.toFixed(3)}` : 
                                                     'N/A'}
@@ -708,15 +469,19 @@ const ComparisonView = ({ comparedStudents, onBack }) => {
                                     </tr>
                                     
                                     {/* Fourth Semester */}
-                                    <tr>
+                                    <tr className={
+                                        findHighestInCategory('gpa_2_2').includes(comparedStudents[0].roll) ||
+                                        findHighestInCategory('gpa_2_2').includes(comparedStudents[1].roll) ||
+                                        (comparedStudents[2] && findHighestInCategory('gpa_2_2').includes(comparedStudents[2].roll)) ||
+                                        (comparedStudents[3] && findHighestInCategory('gpa_2_2').includes(comparedStudents[3].roll)) ||
+                                        (comparedStudents[4] && findHighestInCategory('gpa_2_2').includes(comparedStudents[4].roll))
+                                            ? 'bg-green-50' : ''
+                                    }>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             Fourth Semester
                                         </td>
                                         {comparedStudents.map(student => (
-                                            <td 
-                                                key={student.roll} 
-                                                className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 ${findHighestInCategory('gpa_2_2').includes(student.roll) ? 'bg-green-50' : ''}`}
-                                            >
+                                            <td key={student.roll} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {student.gpa_2_2 !== undefined ? 
                                                     `${student.gpa_2_2.toFixed(3)}` : 
                                                     'N/A'}
@@ -725,15 +490,19 @@ const ComparisonView = ({ comparedStudents, onBack }) => {
                                     </tr>
                                     
                                     {/* Fifth Semester */}
-                                    <tr>
+                                    <tr className={
+                                        findHighestInCategory('gpa_3_1').includes(comparedStudents[0].roll) ||
+                                        findHighestInCategory('gpa_3_1').includes(comparedStudents[1].roll) ||
+                                        (comparedStudents[2] && findHighestInCategory('gpa_3_1').includes(comparedStudents[2].roll)) ||
+                                        (comparedStudents[3] && findHighestInCategory('gpa_3_1').includes(comparedStudents[3].roll)) ||
+                                        (comparedStudents[4] && findHighestInCategory('gpa_3_1').includes(comparedStudents[4].roll))
+                                            ? 'bg-green-50' : ''
+                                    }>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             Fifth Semester
                                         </td>
                                         {comparedStudents.map(student => (
-                                            <td 
-                                                key={student.roll} 
-                                                className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 ${findHighestInCategory('gpa_3_1').includes(student.roll) ? 'bg-green-50' : ''}`}
-                                            >
+                                            <td key={student.roll} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {student.gpa_3_1 !== undefined ? 
                                                     `${student.gpa_3_1.toFixed(3)}` : 
                                                     'N/A'}
@@ -742,15 +511,19 @@ const ComparisonView = ({ comparedStudents, onBack }) => {
                                     </tr>
                                     
                                     {/* CGPA */}
-                                    <tr>
+                                    <tr className={
+                                        findHighestInCategory('cgpa').includes(comparedStudents[0].roll) ||
+                                        findHighestInCategory('cgpa').includes(comparedStudents[1].roll) ||
+                                        (comparedStudents[2] && findHighestInCategory('cgpa').includes(comparedStudents[2].roll)) ||
+                                        (comparedStudents[3] && findHighestInCategory('cgpa').includes(comparedStudents[3].roll)) ||
+                                        (comparedStudents[4] && findHighestInCategory('cgpa').includes(comparedStudents[4].roll))
+                                            ? 'bg-green-50' : ''
+                                    }>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
                                             CGPA
                                         </td>
                                         {comparedStudents.map(student => (
-                                            <td 
-                                                key={student.roll} 
-                                                className={`px-6 py-4 whitespace-nowrap text-sm font-bold text-indigo-600 ${findHighestInCategory('cgpa').includes(student.roll) ? 'bg-green-50' : ''}`}
-                                            >
+                                            <td key={student.roll} className="px-6 py-4 whitespace-nowrap text-sm font-bold text-indigo-600">
                                                 {student.cgpa}
                                             </td>
                                         ))}
@@ -870,7 +643,7 @@ const CompareModal = ({ isOpen, onClose, studentData, onCompare }) => {
                                             onClick={() => handleRemoveStudent(student.roll)}
                                             className="text-red-500 hover:text-red-700 text-xl font-bold"
                                         >
-                                            \u00d7
+                                            ×
                                         </button>
                                     </div>
                                 ))}
@@ -1155,7 +928,7 @@ function App() {
 
     const getSortIndicator = (key) => {
         if (sortConfig.key === key) {
-            return sortConfig.direction === 'ascending' ? ' \u25b2' : ' \u25bc';
+            return sortConfig.direction === 'ascending' ? ' ▲' : ' ▼';
         }
         return '';
     };
