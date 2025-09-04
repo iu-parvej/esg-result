@@ -245,8 +245,8 @@ const studentData = [
         "gpa_1_2": 3.737,
         "gpa_2_1": 3.779,
         "gpa_2_2": 3.852,
-        "gpa_3_1": 3.89,
-        "cgpa": 3.83
+        "gpa_3_1": 3.85,
+        "cgpa": 3.82
     },
     {
         "name": "SADIA ISLAM",
@@ -391,12 +391,12 @@ const studentData = [
     {
         "name": "RUKAIYA HOSSAIN ",
         "roll": "2031045",
-        "gpa_1_1": 3.05,
+        "gpa_1_1": 3.17,
         "gpa_1_2": 3.454,
         "gpa_2_1": 3.326,
         "gpa_2_2": 3.619,
         "gpa_3_1": 3.48,
-        "cgpa": 3.39
+        "cgpa": 3.41
     },
     {
         "name": "MAHFUZA KHATUN ",
